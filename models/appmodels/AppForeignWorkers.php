@@ -3,6 +3,8 @@
 namespace app\models\appmodels;
 
 use app\models\ForeignWorkers;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * Description of AppForeignWorkers
@@ -10,5 +12,16 @@ use app\models\ForeignWorkers;
  * @author user
  */
 class AppForeignWorkers extends ForeignWorkers {
-    //put your code here
+
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
 }

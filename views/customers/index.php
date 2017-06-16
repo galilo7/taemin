@@ -18,24 +18,50 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('customers', 'Create App Customers'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+//            'id',
             'first_name',
             'fathers_name',
             'last_name',
             'phone1',
             // 'phone2',
             // 'address',
-            // 'is_wakil',
-            // 'created_at',
+            [
+                'attribute' => 'is_wakil',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if ($data->is_wakil == 1) {
+                        return Html::img(Yii::getAlias('@web') . '/images/comon/true.png', ['width' => '30px']);
+                    }
+                    return Html::img(Yii::getAlias('@web') . '/images/comon/no.png', ['width' => '30px']);
+                },
+            ], // 'created_at',
             // 'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
+//            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+//                                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'delete' => function($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
+                                    'class' => '',
+                                    'data' => [
+                                        'confirm' => Yii::t("customers", "Are you sure you want to delete this item?"),
+                                        'method' => 'post',
+                                    ],
+                        ]);
+                    }
+                ]
+            ],
         ],
-    ]); ?>
+    ]);
+    ?>
+    <!--        ],
+        ]);
+        ?>-->
 </div>

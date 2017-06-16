@@ -26,21 +26,19 @@ use Yii;
  * @property Schools[] $schools
  * @property VehicleTaemin[] $vehicleTaemins
  */
-class Customers extends \yii\db\ActiveRecord
-{
+class Customers extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'customers';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['first_name', 'fathers_name', 'last_name', 'phone1', 'address'], 'required'],
             [['is_wakil'], 'integer'],
@@ -54,8 +52,7 @@ class Customers extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('customers', 'ID'),
             'first_name' => Yii::t('customers', 'First Name'),
@@ -73,56 +70,50 @@ class Customers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCfws()
-    {
+    public function getCfws() {
         return $this->hasMany(Cfw::className(), ['r_customer' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getForeignWorkers()
-    {
+    public function getForeignWorkers() {
         return $this->hasMany(ForeignWorkers::className(), ['r_customer' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getHospitals()
-    {
+    public function getHospitals() {
         return $this->hasMany(Hospitals::className(), ['r_customer' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMoneyTransfers()
-    {
+    public function getMoneyTransfers() {
         return $this->hasMany(MoneyTransfer::className(), ['r_customer' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSafars()
-    {
+    public function getSafars() {
         return $this->hasMany(Safar::className(), ['r_customer' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchools()
-    {
+    public function getSchools() {
         return $this->hasMany(Schools::className(), ['r_customer' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVehicleTaemins()
-    {
+    public function getVehicleTaemins() {
         return $this->hasMany(VehicleTaemin::className(), ['r_customer' => 'id']);
     }
+
 }

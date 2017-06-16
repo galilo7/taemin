@@ -3,6 +3,8 @@
 namespace app\models\appmodels;
 
 use app\models\Schools;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * Description of AppSchools
@@ -10,5 +12,16 @@ use app\models\Schools;
  * @author user
  */
 class AppSchools extends Schools {
-    //put your code here
+
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
 }

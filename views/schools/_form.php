@@ -52,9 +52,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'is_afternoon')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('schools', 'Create') : Yii::t('schools', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

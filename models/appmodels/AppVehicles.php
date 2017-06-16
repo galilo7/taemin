@@ -3,6 +3,8 @@
 namespace app\models\appmodels;
 
 use app\models\Vehicles;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * Description of AppVehicles
@@ -10,5 +12,16 @@ use app\models\Vehicles;
  * @author user
  */
 class AppVehicles extends Vehicles {
-    //put your code here
+
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
 }

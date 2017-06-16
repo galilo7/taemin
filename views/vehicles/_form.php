@@ -36,9 +36,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'preview_cost')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('vehicles', 'Create') : Yii::t('vehicles', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

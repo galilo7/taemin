@@ -3,6 +3,8 @@
 namespace app\models\appmodels;
 
 use app\models\AvailableTaemin;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,5 +18,16 @@ use app\models\AvailableTaemin;
  * @author user
  */
 class AppAvailableTaemin extends AvailableTaemin {
-    //put your code here
+
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
 }

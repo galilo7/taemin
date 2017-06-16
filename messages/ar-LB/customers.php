@@ -1,19 +1,34 @@
 <?php
 
 return [
+//common attributes
     'ID' => 'الرمز',
-    'C F Name' => 'الاسم',
-    'C Father Name' => 'اسم الأب',
-    'C L Name' => 'العائلة',
-    'C Type' => 'النوع',
-    'C Phone1' => 'هاتف 1',
-    'C Phone2' => 'هاتف 2',
+    'Created At' => 'وقت الإدخال',
+    'Updated At' => 'وقت آخر تعديل',
+//NOT common attributes
+    'First Name' => 'الاسم',
+    'Fathers Name' => 'اسم الأب',
+    'Last Name' => 'العائلة',
+    'Phone1' => 'هاتف 1',
+    'Phone2' => 'هاتف 2',
+    'Address' => 'العنوان',
+    'Is Wakil' => 'وكيل',
+    '' => '',
+    '' => '',
+    '' => '',
+//common Viewa
     'App Customers' => 'الزبائن',
     'Create App Customers' => 'إضافة زبون',
     '' => '',
     '' => '',
-    'Logs' => 'البوالص',
+    '' => '',
+    '' => '',
+    '' => '',
+//common Views
     'Create' => 'إضافة',
     'Update' => 'تعديل',
-    'Delete' => 'حذف'
+    'Delete' => 'حذف',
+    'Are you sure you want to delete this item?' => 'هل حقا ترغب بحذف هذا البند؟',
+    '' => '',
+    '' => '',
 ];
