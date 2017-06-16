@@ -48,9 +48,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'student_price')->textInput() ?>
 
-    <?= $form->field($model, 'is_morning')->textInput() ?>
+    <?= $form->field($model, 'is_morning')->checkbox() ?>
 
-    <?= $form->field($model, 'is_afternoon')->textInput() ?>
+    <?= $form->field($model, 'is_afternoon')->checkbox() ?>
 
 
     <div class="form-group">

@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'is_wakil')->textInput() ?>
+    <?= $form->field($model, 'is_wakil')->checkbox() ?>
 
 
     <div class="form-group">

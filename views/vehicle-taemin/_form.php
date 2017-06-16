@@ -38,7 +38,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'remaining')->textInput() ?>
 
-    <?= $form->field($model, 'is_military')->textInput() ?>
+    <?= $form->field($model, 'is_military')->checkbox() ?>
 
     <?= $form->field($model, 'r_vehicle')->textInput() ?>
 

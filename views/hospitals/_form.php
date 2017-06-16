@@ -42,7 +42,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sex')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'is_in_out')->textInput() ?>
+    <?= $form->field($model, 'is_in_out')->checkbox() ?>
 
 
     <div class="form-group">
