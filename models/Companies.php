@@ -13,9 +13,11 @@ use Yii;
  * @property string $phone1
  * @property string $phone2
  * @property string $address
+ * @property string $email
+ * @property string $website
  * @property string $type
  * @property string $reprisentative_name
- * @property integer $created_at
+ * @property string $created_at
  * @property string $updated_at
  *
  * @property AvailableTaemin[] $availableTaemins
@@ -36,13 +38,13 @@ class Companies extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'phone1', 'address', 'type'], 'required'],
-            [['reprisentative_name', 'updated_at'], 'safe'],
-            [['created_at'], 'integer'],
-            [['name', 'description'], 'string', 'max' => 200],
+            [['name', 'phone1', 'address'], 'required'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['name', 'description', 'reprisentative_name'], 'string', 'max' => 200],
             [['phone1', 'phone2'], 'string', 'max' => 30],
             [['address'], 'string', 'max' => 250],
-            [['type'], 'string', 'max' => 100],
+            [['email', 'type'], 'string', 'max' => 100],
+            [['website'], 'string', 'max' => 150],
         ];
     }
 
@@ -58,6 +60,8 @@ class Companies extends \yii\db\ActiveRecord
             'phone1' => Yii::t('companies', 'Phone1'),
             'phone2' => Yii::t('companies', 'Phone2'),
             'address' => Yii::t('companies', 'Address'),
+            'email' => Yii::t('companies', 'Email'),
+            'website' => Yii::t('companies', 'Website'),
             'type' => Yii::t('companies', 'Type'),
             'reprisentative_name' => Yii::t('companies', 'Reprisentative Name'),
             'created_at' => Yii::t('companies', 'Created At'),

@@ -10,10 +10,12 @@ use yii\widgets\ActiveForm;
 
 <div class="app-companies-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    <?php
+    $form = ActiveForm::begin([
+                'action' => ['index'],
+                'method' => 'get',
+    ]);
+    ?>
 
     <?= $form->field($model, 'id') ?>
 
@@ -27,19 +29,23 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'address') ?>
 
+    <?php // echo $form->field($model, 'email') ?>
+
+    <?php // echo $form->field($model, 'website') ?>
+
     <?php // echo $form->field($model, 'type') ?>
 
     <?php // echo $form->field($model, 'reprisentative_name') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 
-    <?php // echo $form->field($model, 'updated_at') ?>
+        <?php // echo $form->field($model, 'updated_at')  ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('companies', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('companies', 'Reset'), ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton(Yii::t('companies', 'Search'), ['class' => 'btn btn-primary']) ?>
+    <?= Html::resetButton(Yii::t('companies', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>

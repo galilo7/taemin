@@ -36,9 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'value' => function ($data) {
                     if ($data->is_wakil == 1) {
-                        return Html::img(Yii::getAlias('@web') . '/images/comon/true.png', ['width' => '30px']);
+                        return Html::img(Yii::getAlias('@web') . '/images/common/true.png', ['width' => '30px']);
                     }
-                    return Html::img(Yii::getAlias('@web') . '/images/comon/no.png', ['width' => '30px']);
+                    return Html::img(Yii::getAlias('@web') . '/images/common/no.png', ['width' => '30px']);
                 },
             ], // 'created_at',
             // 'updated_at',

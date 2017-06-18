@@ -16,29 +16,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('customers', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('customers', 'Delete'), ['delete', 'id' => $model->id], [
+        <?=
+        Html::a(Yii::t('customers', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('customers', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
             'first_name',
             'fathers_name',
             'last_name',
             'phone1',
             'phone2',
             'address',
-            'is_wakil',
+//            'is_wakil',
+            [
+                'attribute' => 'is_wakil',
+                'format' => 'html',
+                'value' => $model->is_wakil == 1 ? Html::img(Yii::getAlias('@web') . '/images/common/true.png', ['width' => '30px']) :
+                        Html::img(Yii::getAlias('@web') . '/images/common/no.png', ['width' => '30px']),
+            ],
             'created_at',
             'updated_at',
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>

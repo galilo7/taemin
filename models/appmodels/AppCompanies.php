@@ -13,7 +13,15 @@ use yii\db\Expression;
  */
 class AppCompanies extends Companies {
 
-    public function behaviors() {
+    public function rules() {
+        $rules = parent::rules();
+        $rules[] = ['email', 'email'];
+        $rules[] = ['website', 'url', 'defaultScheme' => 'http'];
+        return $rules;
+    }
+
+    public
+            function behaviors() {
         return [
             [
                 'class' => TimestampBehavior::className(),

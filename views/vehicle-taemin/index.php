@@ -1,11 +1,14 @@
 <?php
 
-use yii\helpers\Html;
+use app\models\VehicleTaeminSearch;
+use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\VehicleTaeminSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this View */
+/* @var $searchModel VehicleTaeminSearch */
+/* @var $dataProvider ActiveDataProvider */
 
 $this->title = Yii::t('vehicletaemin', 'App Vehicle Taemins');
 $this->params['breadcrumbs'][] = $this->title;
@@ -18,13 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('vehicletaemin', 'Create App Vehicle Taemin'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+//            'id',
             'code',
             'taemin_name',
             'r_available_taemin',
@@ -43,8 +46,21 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'coverage',
             // 'created_at',
             // 'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+            [
+                'class' => 'yii\grid\ActionColumn',
+//                                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'delete' => function($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
+                                    'class' => '',
+                                    'data' => [
+                                        'confirm' => Yii::t("vehicle-taemin", "Are you sure you want to delete this item?"),
+                                        'method' => 'post',
+                                    ],
+                        ]);
+                    }
+                        ]
+                    ],],
+            ]);
+            ?>
 </div>

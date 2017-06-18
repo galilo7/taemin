@@ -16,7 +16,7 @@ return [
     '' => '',
     '' => '',
     '' => '',
-//common Viewa
+//NOT common Views
     'App Customers' => 'الزبائن',
     'Create App Customers' => 'إضافة زبون',
     '' => '',
