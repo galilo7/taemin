@@ -13,6 +13,12 @@ use yii\db\Expression;
  */
 class AppCustomers extends Customers {
 
+    public $fullName;
+
+//    function __construct() {
+//        $this->fullName = $this->first_name . $this->fathers_name . $this->last_name;
+//    }
+
     public function behaviors() {
         return [
             [

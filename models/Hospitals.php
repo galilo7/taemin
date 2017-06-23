@@ -21,6 +21,8 @@ use Yii;
  * @property string $paid_letters
  * @property integer $remaining
  * @property double $coverage
+ * @property integer $is_active
+ * @property string $reserve
  * @property string $birth
  * @property string $sex
  * @property integer $is_in_out
@@ -47,12 +49,13 @@ class Hospitals extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters', 'birth', 'sex'], 'required'],
-            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_in_out'], 'integer'],
+            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active', 'is_in_out'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'birth', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
             [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['reserve'], 'string', 'max' => 50],
             [['sex'], 'string', 'max' => 25],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
@@ -79,6 +82,8 @@ class Hospitals extends \yii\db\ActiveRecord
             'paid_letters' => Yii::t('hospitals', 'Paid Letters'),
             'remaining' => Yii::t('hospitals', 'Remaining'),
             'coverage' => Yii::t('hospitals', 'Coverage'),
+            'is_active' => Yii::t('hospitals', 'Is Active'),
+            'reserve' => Yii::t('hospitals', 'Reserve'),
             'birth' => Yii::t('hospitals', 'Birth'),
             'sex' => Yii::t('hospitals', 'Sex'),
             'is_in_out' => Yii::t('hospitals', 'Is In Out'),

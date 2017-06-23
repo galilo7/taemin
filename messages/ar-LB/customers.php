@@ -13,7 +13,7 @@ return [
     'Phone2' => 'هاتف 2',
     'Address' => 'العنوان',
     'Is Wakil' => 'وكيل',
-    '' => '',
+    'Insurance Policies' => 'بوالص التأمين',
     '' => '',
     '' => '',
 //NOT common Views

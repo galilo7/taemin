@@ -20,6 +20,8 @@ use Yii;
  * @property string $paid_letters
  * @property integer $remaining
  * @property double $coverage
+ * @property integer $is_active
+ * @property string $reserve
  * @property integer $school_name
  * @property integer $school_address
  * @property string $school_type
@@ -51,11 +53,12 @@ class Schools extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters', 'school_name', 'school_address', 'school_type', 'manager', 'number_of_students', 'student_price', 'is_morning', 'is_afternoon'], 'required'],
-            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'school_name', 'school_address', 'number_of_students', 'student_price', 'is_morning', 'is_afternoon'], 'integer'],
+            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active', 'school_name', 'school_address', 'number_of_students', 'student_price', 'is_morning', 'is_afternoon'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code'], 'string', 'max' => 100],
             [['sale_letters', 'paid_letters', 'manager'], 'string', 'max' => 200],
+            [['reserve'], 'string', 'max' => 50],
             [['school_type'], 'string', 'max' => 25],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
@@ -81,6 +84,8 @@ class Schools extends \yii\db\ActiveRecord
             'paid_letters' => Yii::t('schools', 'Paid Letters'),
             'remaining' => Yii::t('schools', 'Remaining'),
             'coverage' => Yii::t('schools', 'Coverage'),
+            'is_active' => Yii::t('schools', 'Is Active'),
+            'reserve' => Yii::t('schools', 'Reserve'),
             'school_name' => Yii::t('schools', 'School Name'),
             'school_address' => Yii::t('schools', 'School Address'),
             'school_type' => Yii::t('schools', 'School Type'),

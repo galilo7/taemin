@@ -24,6 +24,8 @@ use Yii;
  * @property integer $is_military
  * @property integer $r_vehicle
  * @property double $coverage
+ * @property integer $is_active
+ * @property string $reserve
  * @property string $created_at
  * @property string $updated_at
  *
@@ -48,12 +50,13 @@ class VehicleTaemin extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters', 'r_vehicle'], 'required'],
-            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_military', 'r_vehicle'], 'integer'],
+            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_military', 'r_vehicle', 'is_active'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
             [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['reserve'], 'string', 'max' => 50],
             [['r_vehicle'], 'exist', 'skipOnError' => true, 'targetClass' => Vehicles::className(), 'targetAttribute' => ['r_vehicle' => 'id']],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
@@ -83,6 +86,8 @@ class VehicleTaemin extends \yii\db\ActiveRecord
             'is_military' => Yii::t('vehicle_taemin', 'Is Military'),
             'r_vehicle' => Yii::t('vehicle_taemin', 'R Vehicle'),
             'coverage' => Yii::t('vehicle_taemin', 'Coverage'),
+            'is_active' => Yii::t('vehicle_taemin', 'Is Active'),
+            'reserve' => Yii::t('vehicle_taemin', 'Reserve'),
             'created_at' => Yii::t('vehicle_taemin', 'Created At'),
             'updated_at' => Yii::t('vehicle_taemin', 'Updated At'),
         ];

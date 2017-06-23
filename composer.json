@@ -21,7 +21,10 @@
         "airani/yii2-bootstrap-rtl": "^1.2",
         "dektrium/yii2-user": "^0.9.12",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "et-soft/yii2-widget-select-year": "*"
+        "et-soft/yii2-widget-select-year": "*",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-editable": "*",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

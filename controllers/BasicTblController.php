@@ -2,17 +2,18 @@
 
 namespace app\controllers;
 
-use app\models\appmodels\AppAvailableTaemin;
-use app\models\appmodels\AppAvailableTaeminSearch;
+use app\models\appmodels\AppBasicTbl;
+use app\models\appmodels\AppBasicTblSearch;
+use app\models\BasicTblSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * AvailableTaeminController implements the CRUD actions for AppAvailableTaemin model.
+ * BasicTblController implements the CRUD actions for AppBasicTbl model.
  */
-class AvailableTaeminController extends Controller {
+class BasicTblController extends Controller {
 
     /**
      * @inheritdoc
@@ -28,12 +29,27 @@ class AvailableTaeminController extends Controller {
         ];
     }
 
+    // this method brings all the produced insurance policies
+    public function actionAll() {
+
+        $this->view->title = Yii::t('basictbl', 'App Basic Tbl');
+
+        $searchModel = new AppBasicTblSearch();
+        $dataProvider = $searchModel->searchForCustomer(Yii::$app->request->queryParams, null); // brings from all search models
+
+        return $this->render('index_all', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
-     * Lists all AppAvailableTaemin models.
+     * Lists all AppBasicTbl models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new AppAvailableTaeminSearch();
+
+        $searchModel = new BasicTblSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -43,7 +59,7 @@ class AvailableTaeminController extends Controller {
     }
 
     /**
-     * Displays a single AppAvailableTaemin model.
+     * Displays a single AppBasicTbl model.
      * @param integer $id
      * @return mixed
      */
@@ -54,12 +70,12 @@ class AvailableTaeminController extends Controller {
     }
 
     /**
-     * Creates a new AppAvailableTaemin model.
+     * Creates a new AppBasicTbl model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new AppAvailableTaemin();
+        $model = new AppBasicTbl();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -71,7 +87,7 @@ class AvailableTaeminController extends Controller {
     }
 
     /**
-     * Updates an existing AppAvailableTaemin model.
+     * Updates an existing AppBasicTbl model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -89,7 +105,7 @@ class AvailableTaeminController extends Controller {
     }
 
     /**
-     * Deletes an existing AppAvailableTaemin model.
+     * Deletes an existing AppBasicTbl model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -101,14 +117,14 @@ class AvailableTaeminController extends Controller {
     }
 
     /**
-     * Finds the AppAvailableTaemin model based on its primary key value.
+     * Finds the AppBasicTbl model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return AppAvailableTaemin the loaded model
+     * @return AppBasicTbl the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = AppAvailableTaemin::findOne($id)) !== null) {
+        if (($model = AppBasicTbl::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

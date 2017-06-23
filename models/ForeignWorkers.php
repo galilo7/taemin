@@ -20,6 +20,8 @@ use Yii;
  * @property string $paid_letters
  * @property integer $remaining
  * @property double $coverage
+ * @property integer $is_active
+ * @property string $reserve
  * @property string $kafil_name
  * @property string $madmoun_name
  * @property string $worker_nationality
@@ -50,11 +52,12 @@ class ForeignWorkers extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters', 'kafil_name', 'madmoun_name', 'worker_nationality', 'worker_sex', 'worker_passport_no', 'worker_job'], 'required'],
-            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining'], 'integer'],
+            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'worker_birth', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code'], 'string', 'max' => 100],
             [['sale_letters', 'paid_letters', 'kafil_name'], 'string', 'max' => 200],
+            [['reserve'], 'string', 'max' => 50],
             [['madmoun_name', 'worker_passport_no', 'worker_job'], 'string', 'max' => 250],
             [['worker_nationality'], 'string', 'max' => 30],
             [['worker_sex'], 'string', 'max' => 10],
@@ -82,6 +85,8 @@ class ForeignWorkers extends \yii\db\ActiveRecord
             'paid_letters' => Yii::t('foreign_workers', 'Paid Letters'),
             'remaining' => Yii::t('foreign_workers', 'Remaining'),
             'coverage' => Yii::t('foreign_workers', 'Coverage'),
+            'is_active' => Yii::t('foreign_workers', 'Is Active'),
+            'reserve' => Yii::t('foreign_workers', 'Reserve'),
             'kafil_name' => Yii::t('foreign_workers', 'Kafil Name'),
             'madmoun_name' => Yii::t('foreign_workers', 'Madmoun Name'),
             'worker_nationality' => Yii::t('foreign_workers', 'Worker Nationality'),

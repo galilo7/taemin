@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "available_taemin".
@@ -28,21 +30,19 @@ use Yii;
  * @property Schools[] $schools
  * @property VehicleTaemin[] $vehicleTaemins
  */
-class AvailableTaemin extends \yii\db\ActiveRecord
-{
+class AvailableTaemin extends ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'available_taemin';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'r_company', 'price', 'type'], 'required'],
             [['r_company', 'cost', 'price'], 'integer'],
@@ -58,8 +58,7 @@ class AvailableTaemin extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('available_taemin', 'ID'),
             'name' => Yii::t('available_taemin', 'Name'),
@@ -76,66 +75,59 @@ class AvailableTaemin extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getRCompany()
-    {
+    public function getRCompany() {
         return $this->hasOne(Companies::className(), ['id' => 'r_company']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getCfws()
-    {
+    public function getCfws() {
         return $this->hasMany(Cfw::className(), ['r_available_taemin' => 'id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getForeignWorkers()
-    {
+    public function getForeignWorkers() {
         return $this->hasMany(ForeignWorkers::className(), ['r_available_taemin' => 'id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getHospitals()
-    {
+    public function getHospitals() {
         return $this->hasMany(Hospitals::className(), ['r_available_taemin' => 'id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getMoneyTransfers()
-    {
+    public function getMoneyTransfers() {
         return $this->hasMany(MoneyTransfer::className(), ['r_available_taemin' => 'id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getSafars()
-    {
+    public function getSafars() {
         return $this->hasMany(Safar::className(), ['r_available_taemin' => 'id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getSchools()
-    {
+    public function getSchools() {
         return $this->hasMany(Schools::className(), ['r_available_taemin' => 'id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getVehicleTaemins()
-    {
+    public function getVehicleTaemins() {
         return $this->hasMany(VehicleTaemin::className(), ['r_available_taemin' => 'id']);
     }
+
 }

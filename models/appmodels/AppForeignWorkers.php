@@ -13,6 +13,8 @@ use yii\db\Expression;
  */
 class AppForeignWorkers extends ForeignWorkers {
 
+    public $fullName;
+
     public function behaviors() {
         return [
             [
@@ -22,6 +24,14 @@ class AppForeignWorkers extends ForeignWorkers {
                 'value' => new Expression('NOW()'),
             ],
         ];
+    }
+
+    public function getCustomers() {
+        return $this->hasOne(AppForeignWorkers::className(), ['r_customer' => 'id']);
+    }
+
+    public function getFullName() {
+        return $this->customers->first_name . " " . $this->customers->fathers_name . " " . $this->customers->last_name . "";
     }
 
 }

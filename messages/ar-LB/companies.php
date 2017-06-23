@@ -26,7 +26,9 @@ return [
     'Create' => 'إضافة',
     'Update' => 'تعديل',
     'Delete' => 'حذف',
+    'View' => 'التفاصيل',
     'Are you sure you want to delete this item?' => 'هل حقا ترغب بحذف هذا البند؟',
-    '' => '',
+    'Page Total' => 'المجموع',
+    'Reset' => 'تحديث الصفحة',
     '' => '',
 ];

@@ -21,6 +21,8 @@ use Yii;
  * @property string $paid_letters
  * @property integer $remaining
  * @property double $coverage
+ * @property integer $is_active
+ * @property string $reserve
  * @property string $destination_country
  * @property string $residence_country
  * @property string $nationality
@@ -50,12 +52,13 @@ class Safar extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters', 'destination_country', 'residence_country', 'nationality', 'sex', 'passport_no', 'birth'], 'required'],
-            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining'], 'integer'],
+            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'birth', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code'], 'string', 'max' => 100],
             [['madmoun_name', 'passport_no'], 'string', 'max' => 250],
             [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['reserve'], 'string', 'max' => 50],
             [['destination_country', 'residence_country', 'nationality'], 'string', 'max' => 150],
             [['sex'], 'string', 'max' => 15],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
@@ -83,6 +86,8 @@ class Safar extends \yii\db\ActiveRecord
             'paid_letters' => Yii::t('safar', 'Paid Letters'),
             'remaining' => Yii::t('safar', 'Remaining'),
             'coverage' => Yii::t('safar', 'Coverage'),
+            'is_active' => Yii::t('safar', 'Is Active'),
+            'reserve' => Yii::t('safar', 'Reserve'),
             'destination_country' => Yii::t('safar', 'Destination Country'),
             'residence_country' => Yii::t('safar', 'Residence Country'),
             'nationality' => Yii::t('safar', 'Nationality'),

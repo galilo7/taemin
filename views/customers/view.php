@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\appmodels\AppCustomers */
 
-$this->title = $model->id;
+$this->title = $model->first_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('customers', 'App Customers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,6 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?php echo Html::a(Yii::t('customers', 'Insurance Policies'), ['customers/get-for-customer', 'id' => $model->id], ['class' => 'btn btn-success']); ?>
+
         <?= Html::a(Yii::t('customers', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?=
         Html::a(Yii::t('customers', 'Delete'), ['delete', 'id' => $model->id], [

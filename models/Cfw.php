@@ -22,6 +22,8 @@ use Yii;
  * @property string $paid_letters
  * @property integer $remaining
  * @property double $coverage
+ * @property integer $is_active
+ * @property string $reserve
  * @property string $property_no
  * @property integer $number_of_workers
  * @property string $building
@@ -49,12 +51,13 @@ class Cfw extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters'], 'required'],
-            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'number_of_workers'], 'integer'],
+            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active', 'number_of_workers'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
             [['sale_letters', 'paid_letters', 'field'], 'string', 'max' => 200],
+            [['reserve'], 'string', 'max' => 50],
             [['property_no', 'building'], 'string', 'max' => 150],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
@@ -82,6 +85,8 @@ class Cfw extends \yii\db\ActiveRecord
             'paid_letters' => Yii::t('cfw', 'Paid Letters'),
             'remaining' => Yii::t('cfw', 'Remaining'),
             'coverage' => Yii::t('cfw', 'Coverage'),
+            'is_active' => Yii::t('cfw', 'Is Active'),
+            'reserve' => Yii::t('cfw', 'Reserve'),
             'property_no' => Yii::t('cfw', 'Property No'),
             'number_of_workers' => Yii::t('cfw', 'Number Of Workers'),
             'building' => Yii::t('cfw', 'Building'),

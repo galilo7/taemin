@@ -56,6 +56,7 @@ $config = [
                     'fileMap' => [
                         'logs' => 'logs.php',
                         'available_taemin' => 'available_taemin.php',
+                        'basic_tbl' => 'basictbl.php',
                         'cfw' => 'cfw.php',
                         'customers' => 'customers.php',
                         'companies' => 'companies.php',
@@ -71,6 +72,11 @@ $config = [
                 ],
             ],
         ],
+    ],
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        ]
     ],
     'params' => $params,
 ];

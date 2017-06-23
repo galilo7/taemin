@@ -21,6 +21,8 @@ use Yii;
  * @property string $paid_letters
  * @property integer $remaining
  * @property double $coverage
+ * @property integer $is_active
+ * @property string $reserve
  * @property integer $no_persons
  * @property integer $no_banks
  * @property double $max_money
@@ -48,12 +50,13 @@ class MoneyTransfer extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters', 'no_persons', 'no_banks', 'max_money', 'currency'], 'required'],
-            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'no_persons', 'no_banks'], 'integer'],
+            [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active', 'no_persons', 'no_banks'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage', 'max_money'], 'number'],
             [['code', 'currency'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
             [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['reserve'], 'string', 'max' => 50],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
         ];
@@ -79,6 +82,8 @@ class MoneyTransfer extends \yii\db\ActiveRecord
             'paid_letters' => Yii::t('money_transfer', 'Paid Letters'),
             'remaining' => Yii::t('money_transfer', 'Remaining'),
             'coverage' => Yii::t('money_transfer', 'Coverage'),
+            'is_active' => Yii::t('money_transfer', 'Is Active'),
+            'reserve' => Yii::t('money_transfer', 'Reserve'),
             'no_persons' => Yii::t('money_transfer', 'No Persons'),
             'no_banks' => Yii::t('money_transfer', 'No Banks'),
             'max_money' => Yii::t('money_transfer', 'Max Money'),

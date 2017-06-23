@@ -10,13 +10,12 @@ use app\models\appmodels\AppAvailableTaemin;
 /**
  * AvailableTaeminSearch represents the model behind the search form about `app\models\appmodels\AppAvailableTaemin`.
  */
-class AvailableTaeminSearch extends AppAvailableTaemin
-{
+class AvailableTaeminSearch extends AppAvailableTaemin {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'r_company', 'cost', 'price'], 'integer'],
             [['name', 'description', 'price_description', 'type', 'created_at', 'updated_at'], 'safe'],
@@ -27,8 +26,7 @@ class AvailableTaeminSearch extends AppAvailableTaemin
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,8 +38,7 @@ class AvailableTaeminSearch extends AppAvailableTaemin
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = AppAvailableTaemin::find();
 
         // add conditions that should always apply here
@@ -70,10 +67,11 @@ class AvailableTaeminSearch extends AppAvailableTaemin
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'price_description', $this->price_description])
-            ->andFilterWhere(['like', 'type', $this->type]);
+                ->andFilterWhere(['like', 'description', $this->description])
+                ->andFilterWhere(['like', 'price_description', $this->price_description])
+                ->andFilterWhere(['like', 'type', $this->type]);
 
         return $dataProvider;
     }
+
 }

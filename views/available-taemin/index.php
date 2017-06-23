@@ -29,13 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 //            'id',
             'name',
-            'description',
-            'r_company',
+//            'description',
+//            'r_company',
+            'companyName',
             'cost',
-            // 'price',
+            'price',
             // 'percentage',
             // 'price_description',
-            // 'type',
+            'type',
             // 'created_at',
             // 'updated_at',
             [
@@ -46,13 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
                                     'class' => '',
                                     'data' => [
-                                        'confirm' => Yii::t("available-taemin", "Are you sure you want to delete this item?"),
+                                        'confirm' => Yii::t("available_taemin", "Are you sure you want to delete this item?"),
                                         'method' => 'post',
                                     ],
                         ]);
                     }
-                        ]
-                    ],],
-            ]);
-            ?>
+                ]
+            ],],
+    ]);
+    ?>
 </div>
