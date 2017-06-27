@@ -1,40 +1,47 @@
 <?php
 
 use app\models\appmodels\AppAvailableTaemin;
-use app\models\appmodels\AppCustomers;
 use app\models\BasicTblSearch;
 use kartik\select2\Select2;
 use yii\data\ActiveDataProvider;
-use yii\db\Expression;
 use yii\grid\DataColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 /* @var $this View */
 /* @var $searchModel BasicTblSearch */
 /* @var $dataProvider ActiveDataProvider */
 
-$this->title = Yii::t('basictbl', 'App Basic Tbls');
+//$this->title = Yii::t('basictbl', 'App Basic Tbls');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('basictbl', 'Customers'), 'url' => Url::to(['customers/index'])];
+
 $this->params['breadcrumbs'][] = $this->title;
+//die(yii\helpers\VarDumper::dump(, 4, TRUE));
 ?>
 <div class="app-basic-tbl-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]);    ?>
-
-    <p>
-        <?= Html::a(Yii::t('basictbl', 'Create App Basic Tbl'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div>
+        <!--<p>-->
+        <?php
+//            $form = ActiveForm::begin();
+//        $var;
+//        $model = new AppNewTaeminPolicy();
+        echo $this->render('_form_taemin_name_index_customer', [
+            'taeminNamemodel' => $taeminNamemodel,
+            'customerId' => $customer->id,
+        ]);
+//        echo Html::a(Yii::t('basictbl', 'Create App Basic Tbl'), ['create-policy'], ['class' => 'btn btn-success', 'style' => 'display: none;']);
+//        ActiveForm::end();
+        ?>
+        <!--</p>-->
+    </div>
 
     <?php
-//    $basicTblSearch = new AppBasicTblSearch();
-//    $resArray = $basicTblSearch->search(null, 1);
-//    $arr = $resArray->allModels;
-//    $customersList = ArrayHelper::map($arr, 'r_customer', 'fullName');
-//    die(VarDumper::dump($customersList, 4, true));
-
     echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -64,78 +71,115 @@ $this->params['breadcrumbs'][] = $this->title;
                     'data' => ArrayHelper::map(AppAvailableTaemin::find()->select(
                                             ['id', 'name'])
                                     ->asArray()
-                                    ->all(), 'id', 'name'), 'pluginOptions' => [
-                        'allowClear' => true
-                    ],
+                                    ->all(), 'id', 'name'),
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
                     'options' => [
-                        'placeholder' => Yii::t('app', 'Select'),
+                        'placeholder' => Yii::t('basictbl', 'Select Available Taemin'),
                         'dir' => 'rtl',
                     ]
                 ]),
                 'format' => 'raw',
             ],
-            'r_customer',
             'madmoun_name',
             'remaining',
             'end_date',
+//            ['class' => 'yii\grid\ActionColumn'],
             [
-                'class' => DataColumn::className(),
-                'attribute' => 'r_customer',
-                'label' => Yii::t('customers', 'Full Name'),
-                'value' => function ($model) {
-//                    unset($model['first_name']);
-//                    unset($model['fathers_name']);
-//                    unset($model['last_name']);
-//                    $model = new AppCfw($model);
-//                    $mod->load($model);
-//                    die(yii\helpers\VarDumper::dump($mod, 4, true));
-//                    $rel = $model->getCustomers()->one();
-                    if ($model) {
-//                        $url = idToUrl($model['id']);
-//                        return $model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'];
-                        return Html::a($model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'], ['customers/view', 'id' => $model['r_customer']], ['data-pjax' => 0]);
-//                        return Html::a($model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'], ['customers/view', 'id' => idxToid($model['id'])], ['data-pjax' => 0]);
-//                        return Html::a($model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'], ['customers/view', 'id' => $model['id'],], ['data-pjax' => 0]);
-//                        return Html::a($rel->first_name . " " . $rel->fathers_name . " " . $rel->last_name, ['personal-info/view', 'id' => $rel->id,], ['data-pjax' => 0]);
-//                        return Html::a($rel->first_name . " " . $rel->fathers_name . " " . $rel->last_name, ['personal-info/view', 'id' => $rel->id,], ['data-pjax' => 0]);
-                    } else {
-                        return '';
+                'class' => 'yii\grid\ActionColumn',
+                'header' => '',
+                'headerOptions' => ['style' => 'color:#337ab7'],
+                'template' => '{view}{update}{delete}',
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        $idx = $model['id'];
+                        $id = idxToid($idx);
+                        $url = idxToAction($idx, 'view-from-customer');
+                        $res = Url::to([$url, 'id' => $id]);
+//                        die($res);
+//                        $url = Url::to(['basic-tbl/view', 'id' => $model['id']]);
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $res, [
+                                    'title' => Yii::t('app', 'lead-view'),
+                        ]);
+                    },
+                    'update' => function ($url, $model) {
+                        $idx = $model['id'];
+                        $id = idxToid($idx);
+                        $url = idxToAction($idx, 'update-from-customer');
+                        $res = Url::to([$url, 'id' => $id]);
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $res, [
+                                    'title' => Yii::t('app', 'lead-update'),
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        $idx = $model['id'];
+                        $id = idxToid($idx);
+                        $url = idxToAction($idx, 'delete-from-customer');
+                        $res = Url::to([$url, 'id' => $id]);
+//                        $url = Url::to(['basic-tbl/delete', 'id' => $model['id']]);
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $res, [
+                                    'class' => '',
+                                    'data' => [
+                                        'confirm' => Yii::t("customers", "Are you sure you want to delete this item?"),
+                                        'method' => 'post',
+                                    ],
+                        ]);
                     }
-                },
-                'options' => [
-                    'width' => '150px',
                 ],
-                'filter' => Select2::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'r_customer',
-                    'data' => ArrayHelper::map(AppCustomers::find()->select(
-                                            ['id', new Expression('CONCAT(first_name, " ",fathers_name," ",last_name) as c_first_name')])
-                                    ->asArray()
-                                    ->all(), 'id', 'c_first_name'),
-                    'options' => [
-                        'placeholder' => Yii::t('app', 'Select'),
-                        'dir' => 'rtl',
-                    ]
-                ]),
-                'format' => 'raw',
+//                'urlCreator' => function ($action, $model, $key, $index) {
+//                    if ($action === 'view') {
+//                        $url = 'index.php?r=client-login/lead-view&id=' . $model->id;
+//                        return $url;
+//                    }
+//
+//                    if ($action === 'update') {
+//                        $url = 'index.php?r=client-login/lead-update&id=' . $model->id;
+//                        return $url;
+//                    }
+//                    if ($action === 'delete') {
+//                        $url = 'index.php?r=client-login/lead-delete&id=' . $model->id;
+//                        return $url;
+//                    }
+//                }
             ],
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);
 
-    function idxToAction($idX = "") {
+    function idxToAction($idX = "", $action) {
         $del = strpos($idX, '+');
-        $tbl = substr($idX, 0, $del - 1);
+        $tbl = substr($idX, 0, $del);
 //        $id = substr($idX, $del + 1, strlen($idX) - 1);
-
+//        die($tbl);
         switch ($tbl) {
             case 'cfw' :
-                $url = 'cfw/view';
-
+                $url = 'cfw/' . $action;
                 break;
+
+            case 'foreign-workers' :
+                $url = 'foreign-workers/' . $action;
+                break;
+
+            case 'hospitals' :
+                $url = 'hospitals/' . $action;
+                break;
+
+            case 'money-transfer' :
+                $url = 'money-transfer/' . $action;
+                break;
+
+            case 'safar' :
+                $url = 'safar/' . $action;
+                break;
+
+            case 'schools' :
+                $url = 'schools/' . $action;
+                break;
+
+            case 'vahicle-taemin' :
+                $url = 'vahicle-taemin/' . $action;
+                break;
+
             default : return NULL;
         }
         return $url;

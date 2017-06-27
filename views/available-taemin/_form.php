@@ -2,6 +2,7 @@
 
 use app\models\appmodels\AppAvailableTaemin;
 use app\models\appmodels\AppCompanies;
+use app\models\appmodels\AppNewTaeminPolicy;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\View;
@@ -16,8 +17,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
+    <?php
+//    echo $form->field($model, 'name')->textInput(['maxlength' => true]);
+    ?>
+    <?php
+//    $table_name_items = ["حريق", "مسؤولية مدنية", "طوارئ عمل", "سرقة", "مدارس", "عمال أجانب", "استشفاء", "سفر", "إلزامي", "مادي", "", ""];
+//    $table_name_items = ["حريق" => "حريق", "مسؤولية مدنية" => "مسؤولية مدنية", "طوارئ عمل" => "طوارئ عمل", "سرقة" => "سرقة", "مدارس" => "مدارس", "عمال أجانب" => "عمال أجانب", "استشفاء" => "استشفاء", "سفر" => "سفر", "إلزامي" => "إلزامي", "مادي" => "مادي", "", "", "", "", "", "", "", "", "", "", ""];
+//    $table_name_items = ArrayHelper::map(AppCompanies::find()->all(), 'id', function($model, $defaultValue) {
+//                return $model['name'];
+//            });
+    $table_name_items = AppNewTaeminPolicy::$taemin_name_items;
+    echo $form->field($model, 'name', ['options' => ['class' => 'comon']])
+            ->dropDownList($table_name_items, ['prompt' => Yii::t('available_taemin', 'Select Taemin ...')]);
+    ?>
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
     <?php

@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $code
+ * @property string $taemin_name
  * @property integer $r_available_taemin
  * @property integer $r_customer
  * @property string $contract_date
@@ -56,7 +57,7 @@ class Schools extends \yii\db\ActiveRecord
             [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active', 'school_name', 'school_address', 'number_of_students', 'student_price', 'is_morning', 'is_afternoon'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
-            [['code'], 'string', 'max' => 100],
+            [['code', 'taemin_name'], 'string', 'max' => 100],
             [['sale_letters', 'paid_letters', 'manager'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['school_type'], 'string', 'max' => 25],
@@ -73,6 +74,7 @@ class Schools extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('schools', 'ID'),
             'code' => Yii::t('schools', 'Code'),
+            'taemin_name' => Yii::t('schools', 'Taemin Name'),
             'r_available_taemin' => Yii::t('schools', 'R Available Taemin'),
             'r_customer' => Yii::t('schools', 'R Customer'),
             'contract_date' => Yii::t('schools', 'Contract Date'),

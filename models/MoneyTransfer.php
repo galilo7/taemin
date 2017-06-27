@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $code
+ * @property string $taemin_name
  * @property integer $r_available_taemin
  * @property integer $r_customer
  * @property string $madmoun_name
@@ -53,7 +54,7 @@ class MoneyTransfer extends \yii\db\ActiveRecord
             [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active', 'no_persons', 'no_banks'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage', 'max_money'], 'number'],
-            [['code', 'currency'], 'string', 'max' => 100],
+            [['code', 'taemin_name', 'currency'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
             [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
@@ -70,6 +71,7 @@ class MoneyTransfer extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('money_transfer', 'ID'),
             'code' => Yii::t('money_transfer', 'Code'),
+            'taemin_name' => Yii::t('money_transfer', 'Taemin Name'),
             'r_available_taemin' => Yii::t('money_transfer', 'R Available Taemin'),
             'r_customer' => Yii::t('money_transfer', 'R Customer'),
             'madmoun_name' => Yii::t('money_transfer', 'Madmoun Name'),

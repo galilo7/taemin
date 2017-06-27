@@ -12,13 +12,12 @@ use yii\filters\VerbFilter;
 /**
  * CfwController implements the CRUD actions for AppCfw model.
  */
-class CfwController extends Controller
-{
+class CfwController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -29,18 +28,55 @@ class CfwController extends Controller
         ];
     }
 
+    public function actionCreateForCustomer($customerId, $selectedTaeminName) {
+        $model = new AppCfw();
+        $model->r_customer = $customerId;
+        $model->taemin_name = $selectedTaeminName;
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                        'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionViewFromCustomer($id) {
+        return $this->render('view_customer', [
+                    'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionDeleteFromCustomer($id) {
+        $this->findModel($id)->delete();
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionUpdateFromCustomer($id) {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view_customer', 'id' => $model->id]);
+        } else {
+            return $this->render('update_customer', [
+                        'model' => $model,
+            ]);
+        }
+    }
+
     /**
      * Lists all AppCfw models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new CfwSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -49,10 +85,9 @@ class CfwController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -61,15 +96,14 @@ class CfwController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new AppCfw();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -80,15 +114,14 @@ class CfwController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -99,11 +132,10 @@ class CfwController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['basic-tbl/index']);
     }
 
     /**
@@ -113,12 +145,12 @@ class CfwController extends Controller
      * @return AppCfw the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = AppCfw::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

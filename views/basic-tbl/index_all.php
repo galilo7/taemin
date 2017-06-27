@@ -58,43 +58,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     'data' => ArrayHelper::map(AppAvailableTaemin::find()->select(
                                             ['id', 'name'])
                                     ->asArray()
-                                    ->all(), 'id', 'name'), 'pluginOptions' => [
-                        'allowClear' => true
-                    ],
+                                    ->all(), 'id', 'name'),
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
                     'options' => [
-                        'placeholder' => Yii::t('app', 'Select'),
+                        'placeholder' => Yii::t('basictbl', 'Select Available Taemin'),
                         'dir' => 'rtl',
                     ]
                 ]),
                 'format' => 'raw',
             ],
-            'r_customer',
             'madmoun_name',
             'remaining',
             'end_date',
+            ///////////////////////////////////////////////////
             [
                 'class' => DataColumn::className(),
                 'attribute' => 'r_customer',
-                'label' => Yii::t('customers', 'Full Name'),
+                'label' => Yii::t('basictbl', 'Full Name Of Customer'),
                 'value' => function ($model) {
-//                    unset($model['first_name']);
-//                    unset($model['fathers_name']);
-//                    unset($model['last_name']);
-//                    $model = new AppCfw($model);
-//                    $mod->load($model);
-//                    die(yii\helpers\VarDumper::dump($mod, 4, true));
-//                    $rel = $model->getCustomers()->one();
+
                     if ($model) {
-//                        $url = idToUrl($model['id']);
-//                        return $model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'];
                         return Html::a($model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'], ['customers/view', 'id' => $model['r_customer']], ['data-pjax' => 0]);
-//                        return Html::a($model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'], ['customers/view', 'id' => idxToid($model['id'])], ['data-pjax' => 0]);
-//                        return Html::a($model['first_name'] . " " . $model['fathers_name'] . " " . $model['last_name'], ['customers/view', 'id' => $model['id'],], ['data-pjax' => 0]);
-//                        return Html::a($rel->first_name . " " . $rel->fathers_name . " " . $rel->last_name, ['personal-info/view', 'id' => $rel->id,], ['data-pjax' => 0]);
-//                        return Html::a($rel->first_name . " " . $rel->fathers_name . " " . $rel->last_name, ['personal-info/view', 'id' => $rel->id,], ['data-pjax' => 0]);
                     } else {
                         return '';
                     }
@@ -106,16 +92,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $searchModel,
                     'attribute' => 'r_customer',
                     'data' => ArrayHelper::map(AppCustomers::find()->select(
-                                            ['id', new Expression('CONCAT(first_name, " ",fathers_name," ",last_name) as c_first_name')])
+//                                            ['id', 'fullName'])
+                                            ['id', new Expression('CONCAT(first_name, " ",fathers_name," ",last_name) as fullName')])
                                     ->asArray()
-                                    ->all(), 'id', 'c_first_name'),
+                                    ->all(), 'id', 'fullName'),
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
                     'options' => [
-                        'placeholder' => Yii::t('app', 'Select'),
+                        'placeholder' => Yii::t('basic_tbl', 'Select Customer Name'),
                         'dir' => 'rtl',
                     ]
                 ]),
                 'format' => 'raw',
             ],
+            ///////////////////////////////////////////////////
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);

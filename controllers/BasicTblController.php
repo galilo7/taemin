@@ -4,9 +4,12 @@ namespace app\controllers;
 
 use app\models\appmodels\AppBasicTbl;
 use app\models\appmodels\AppBasicTblSearch;
+use app\models\appmodels\AppCfw;
+use app\models\appmodels\AppNewTaeminPolicy;
 use app\models\BasicTblSearch;
 use Yii;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -27,6 +30,66 @@ class BasicTblController extends Controller {
                 ],
             ],
         ];
+    }
+
+    public function actionCreateForCustomer($customerId) {
+
+        $taeminNamemodel = new AppNewTaeminPolicy();
+
+        if ($taeminNamemodel->load(Yii::$app->request->post()) && $taeminNamemodel->validate()) {
+            switch ($taeminNamemodel->selectedTaeminName) {
+                case "حريق":
+                    $url = Url::to('cfw/create-for-customer');
+                    break;
+
+                case "مسؤولية مدنية":
+                    $url = Url::to('cfw/create-for-customer');
+                    break;
+
+                case "طوارئ عمل":
+                    $url = Url::to('cfw/create-for-customer');
+                    break;
+
+                case "عمال أجانب":
+                    $url = Url::to('foreign-workers/create-for-customer');
+                    break;
+
+                case "مدارس":
+                    $url = Url::to('schools/create-for-customer');
+                    break;
+
+                case "استشفاء":
+                    $url = Url::to('hospitals/create-for-customer');
+                    break;
+
+                case "سفر":
+                    $url = Url::to('safar/create-for-customer');
+                    break;
+
+                case "إلزامي":
+                    $url = Url::to('vehicle-taemin/create-for-customer');
+                    break;
+
+                case "مادي":
+                    $url = Url::to('vehicle-taemin/create-for-customer');
+                    break;
+
+                case "نقل أموال":
+                    $url = Url::to('money-transfer/create-for-customer');
+                    break;
+
+//                case "مدارس":
+//                    $url = Url::to('cfw/create-for-customer');
+//                    break;
+            }
+//            die(\yii\helpers\VarDumper::dump($model, 4, true));
+            return $this->redirect([$url, 'customerId' => $customerId, 'selectedTaeminName' => $taeminNamemodel->selectedTaeminName]);
+
+//            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            die("notValidates");
+            $this->redirect(Yii::$app->request->referrer);
+        }
     }
 
     // this method brings all the produced insurance policies
@@ -96,9 +159,9 @@ class BasicTblController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view_customer', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+            return $this->render('update_customer', [
                         'model' => $model,
             ]);
         }

@@ -17,7 +17,7 @@ return [
     'Select Type (cash / Jare) ...' => 'اختر نوع (كاش أو جاري) ...',
     'Company Name' => 'اسم الشركة',
     'Available Taemin Name' => 'التأمين',
-    '' => '',
+    'Select Taemin ...' => 'اختر التأمين',
     '' => '',
     '' => '',
 //NOT common Views

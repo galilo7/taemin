@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $code
+ * @property string $taemin_name
  * @property integer $r_available_taemin
  * @property integer $r_customer
  * @property string $madmoun_name
@@ -46,7 +47,7 @@ class BasicTbl extends \yii\db\ActiveRecord
             [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
-            [['code'], 'string', 'max' => 100],
+            [['code', 'taemin_name'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
             [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
@@ -61,6 +62,7 @@ class BasicTbl extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('basictbl', 'ID'),
             'code' => Yii::t('basictbl', 'Code'),
+            'taemin_name' => Yii::t('basictbl', 'Taemin Name'),
             'r_available_taemin' => Yii::t('basictbl', 'R Available Taemin'),
             'r_customer' => Yii::t('basictbl', 'R Customer'),
             'madmoun_name' => Yii::t('basictbl', 'Madmoun Name'),

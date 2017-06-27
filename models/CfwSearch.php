@@ -35,28 +35,11 @@ class CfwSearch extends AppCfw {
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-//    public function test($id) {
-//
-//
-////        $query = (new Query())
-////                ->select(["CONCAT('cfw+', cfw.id) AS id", 'r_customer', 'r_available_taemin', 'code', 'madmoun_name', 'remaining', 'customers.first_name', 'customers.fathers_name', 'customers.last_name'])
-////                ->from('cfw')
-////                ->join('INNER JOIN', 'customers', 'customers.id = cfw.r_customer')
-////                ->where(['r_customer', $id]);
-//        return $query->all();
-//    }
-
-    public function searchForCustomer($params, $customerId) {
+// THE FOLLOWING METHOD RETURNS THE PRODUCED INSURANCE POLICIES FOR A CUSTOMER IF CUSTOMER ID IS NOT NULL, AND ALL PRODUCED POLICIES IF NOT SPECIFIED
+    public function mySearch($params, $customerId) {
 
         $query = (new \yii\db\Query())
-                ->select(["CONCAT('cfw+', cfw.id) AS id", 'cfw.r_customer', 'cfw.r_available_taemin', 'cfw.code', 'cfw.madmoun_name', 'cfw.remaining', "CONCAT(customers.first_name, customers.fathers_name, customers.last_name) AS fullName", 'customers.first_name', 'customers.fathers_name', 'customers.last_name', 'available_taemin.name AS taemin_name'])
+                ->select(["CONCAT('cfw+', cfw.id) AS id", 'cfw.r_customer', 'cfw.r_available_taemin', 'cfw.code', 'cfw.madmoun_name', 'cfw.remaining', 'cfw.updated_at', "CONCAT(customers.first_name, customers.fathers_name, customers.last_name) AS fullName", 'customers.first_name', 'customers.fathers_name', 'customers.last_name', 'available_taemin.name AS taemin_name'])
                 ->from('cfw')
                 ->join('LEFT JOIN', 'customers', 'customers.id = cfw.r_customer')
                 ->join('LEFT JOIN', 'available_taemin', 'available_taemin.id = cfw.r_available_taemin');
@@ -64,33 +47,7 @@ class CfwSearch extends AppCfw {
             $query->andFilterWhere(['r_customer' => $customerId]);
         }
 
-//        return $query->all();
-//        return die(\yii\helpers\VarDumper::dump($query, 3, true));
-//                ->indexBy('id');
-//        $query->joinWith(['customers']);
-//        $query->andFilterWhere(['like', 'code', 'الزبوت الأوزل CFW2']);
-//        $query->andFilterWhere(['like', 'taemin_name', 'نتأمين الزبون الثاني']);
-//
-//        $query = AppCfw::find();
-//        $query->andFilterWhere(['r_customer' => $customerId]);
-//        $query = AppCfw::find()->where(['r_customer' => $customerId]);
-        // add conditions that should always apply here
-//        $dataProvider = new ActiveDataProvider([
-//            'query' => $query,
-//        ]);
-//        
-//        
-//        
-//        $params = [
-//            'code' => '',
-//            'r_available_taemin' => '554',
-//            'r_customer' => '554',
-//            'madmoun_name' => '554',
-//            'id' => '554',
-//        ];
-//        
-//        
-//        $this->load($params['AppBasicTblSearch']);
+
         $this->id = isset($params['AppBasicTblSearch']['id']) ? $params['AppBasicTblSearch']['id'] : '';
         $this->code = isset($params['AppBasicTblSearch']['code']) ? $params['AppBasicTblSearch']['code'] : '';
         $this->taemin_name = isset($params['AppBasicTblSearch']['taemin_name']) ? $params['AppBasicTblSearch']['taemin_name'] : '';
@@ -157,7 +114,7 @@ class CfwSearch extends AppCfw {
         return $dataProvider;
     }
 
-    public function searchOld($params) {
+    public function search($params) {
         $query = AppCfw::find();
 
         // add conditions that should always apply here

@@ -10,13 +10,12 @@ use app\models\appmodels\AppCompanies;
 /**
  * CompaniesSearch represents the model behind the search form about `app\models\appmodels\AppCompanies`.
  */
-class CompaniesSearch extends AppCompanies
-{
+class CompaniesSearch extends AppCompanies {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'created_at'], 'integer'],
             [['name', 'description', 'phone1', 'phone2', 'address', 'type', 'reprisentative_name', 'updated_at'], 'safe'],
@@ -26,8 +25,7 @@ class CompaniesSearch extends AppCompanies
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -39,8 +37,7 @@ class CompaniesSearch extends AppCompanies
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = AppCompanies::find();
 
         // add conditions that should always apply here
@@ -66,12 +63,13 @@ class CompaniesSearch extends AppCompanies
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'phone1', $this->phone1])
-            ->andFilterWhere(['like', 'phone2', $this->phone2])
-            ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'type', $this->type]);
+                ->andFilterWhere(['like', 'description', $this->description])
+                ->andFilterWhere(['like', 'phone1', $this->phone1])
+                ->andFilterWhere(['like', 'phone2', $this->phone2])
+                ->andFilterWhere(['like', 'address', $this->address])
+                ->andFilterWhere(['like', 'type', $this->type]);
 
         return $dataProvider;
     }
+
 }

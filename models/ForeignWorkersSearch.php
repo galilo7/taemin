@@ -34,21 +34,21 @@ class ForeignWorkersSearch extends AppForeignWorkers {
         return Model::scenarios();
     }
 
-    public function searchForCustomer($params, $customerId) {
-        $query = AppForeignWorkers::find()->where(['r_customer' => $customerId]);
-        $query = (new Query())
-                ->select('*')
-                ->from('foreign_workers')
-                ->where(['r_customer' => $customerId])
-                ->indexBy('id');
-        $query = (new Query())
-                ->select(["CONCAT('cfw+', foreign_workers.id) AS id", 'r_customer', 'r_available_taemin', 'code', 'madmoun_name', 'remaining', 'customers.first_name', 'customers.fathers_name', 'customers.last_name'])
-                ->from('foreign_workers')
-                ->join('INNER JOIN', 'customers', 'customers.id = foreign_workers.r_customer')
-                ->where(['r_customer' => $customerId]);
+    public function mySearch($params, $customerId) {
+//        $query = AppForeignWorkers::find()->where(['r_customer' => $customerId]);
+//        $query = (new Query())
+//                ->select('*')
+//                ->from('foreign_workers')
+//                ->where(['r_customer' => $customerId])
+//                ->indexBy('id');
+//        $query = (new Query())
+//                ->select(["CONCAT('cfw+', foreign_workers.id) AS id", 'r_customer', 'r_available_taemin', 'code', 'madmoun_name', 'remaining', 'customers.first_name', 'customers.fathers_name', 'customers.last_name'])
+//                ->from('foreign_workers')
+//                ->join('INNER JOIN', 'customers', 'customers.id = foreign_workers.r_customer')
+//                ->where(['r_customer' => $customerId]);
 
         $query = (new \yii\db\Query())
-                ->select(["CONCAT('foreign-workers+', foreign_workers.id) AS id", 'foreign_workers.r_customer', 'foreign_workers.r_available_taemin', 'foreign_workers.code', 'foreign_workers.madmoun_name', 'foreign_workers.remaining', "CONCAT(customers.first_name, customers.fathers_name, customers.last_name) AS fullName", 'customers.first_name', 'customers.fathers_name', 'customers.last_name', 'available_taemin.name As taemin_name'])
+                ->select(["CONCAT('foreign-workers+', foreign_workers.id) AS id", 'foreign_workers.r_customer', 'foreign_workers.r_available_taemin', 'foreign_workers.code', 'foreign_workers.madmoun_name', 'foreign_workers.remaining', 'foreign_workers.updated_at', "CONCAT(customers.first_name, customers.fathers_name, customers.last_name) AS fullName", 'customers.first_name', 'customers.fathers_name', 'customers.last_name', 'available_taemin.name As taemin_name'])
                 ->from('foreign_workers')
                 ->join('LEFT JOIN', 'customers', 'customers.id = foreign_workers.r_customer')
                 ->join('LEFT JOIN', 'available_taemin', 'available_taemin.id = foreign_workers.r_available_taemin');

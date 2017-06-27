@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $code
+ * @property string $taemin_name
  * @property integer $r_available_taemin
  * @property integer $r_customer
  * @property string $contract_date
@@ -55,7 +56,7 @@ class ForeignWorkers extends \yii\db\ActiveRecord
             [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active'], 'integer'],
             [['contract_date', 'start_date', 'end_date', 'worker_birth', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
-            [['code'], 'string', 'max' => 100],
+            [['code', 'taemin_name'], 'string', 'max' => 100],
             [['sale_letters', 'paid_letters', 'kafil_name'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['madmoun_name', 'worker_passport_no', 'worker_job'], 'string', 'max' => 250],
@@ -74,6 +75,7 @@ class ForeignWorkers extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('foreign_workers', 'ID'),
             'code' => Yii::t('foreign_workers', 'Code'),
+            'taemin_name' => Yii::t('foreign_workers', 'Taemin Name'),
             'r_available_taemin' => Yii::t('foreign_workers', 'R Available Taemin'),
             'r_customer' => Yii::t('foreign_workers', 'R Customer'),
             'contract_date' => Yii::t('foreign_workers', 'Contract Date'),

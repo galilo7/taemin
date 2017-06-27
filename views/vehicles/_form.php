@@ -13,7 +13,9 @@ use yii\widgets\ActiveForm;
 
 <div class="app-vehicles-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+    $form = ActiveForm::begin();
+    ?>
 
     <?php
 //    echo $form->field($model, 'type')->textInput(['maxlength' => true]);

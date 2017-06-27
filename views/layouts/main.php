@@ -39,7 +39,6 @@ AppAsset::register($this);
                     ['label' => Yii::t('app', 'Customers'), 'url' => ['/customers/index']],
                     ['label' => Yii::t('app', 'Available Taemins'), 'url' => ['/available-taemin/index']],
                     ['label' => Yii::t('app', 'Companies'), 'url' => ['/companies/index']],
-                    ['label' => Yii::t('app', 'Insurance Policies NOT COMPLETED'), 'url' => ['/companies/index']],
                     ['label' => Yii::t('app', 'All Produced Insurance Policies'), 'url' => ['/basic-tbl/all']],
                     Yii::$app->user->isGuest ? (
                             ['label' => 'Login', 'url' => ['/site/login']]

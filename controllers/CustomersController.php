@@ -4,11 +4,9 @@ namespace app\controllers;
 
 use app\models\appmodels\AppBasicTblSearch;
 use app\models\appmodels\AppCustomers;
+use app\models\appmodels\AppNewTaeminPolicy;
 use app\models\CustomersSearch;
 use Yii;
-use yii\data\ActiveDataProvider;
-use yii\db\Expression;
-use yii\db\Query;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -20,11 +18,13 @@ class CustomersController extends Controller {
 
     public function actionGetForCustomer($id) {
         $customer = AppCustomers::find()->where(['id' => $id])->one();
-
-        $this->view->title = Yii::t('basictbl', 'App Basic Tbl');
+        $customerDescription = $customer->first_name . " " . $customer->fathers_name . " " . $customer->last_name . " - " . $customer->phone1;
+        $this->view->title = Yii::t('basictbl', 'App Basic Tbls') . " -- " . $customerDescription;
 
         $searchModel = new AppBasicTblSearch();
         $dataProvider = $searchModel->searchForCustomer(Yii::$app->request->queryParams, $id); // brings from all search models
+
+        $taeminNamemodel = new AppNewTaeminPolicy();
 
 
 
@@ -32,59 +32,60 @@ class CustomersController extends Controller {
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
                     'customer' => $customer,
+                    'taeminNamemodel' => $taeminNamemodel,
         ]);
     }
 
-    public function actionGetForCustomerX($id) {
-        $customer = AppCustomers::find()->where(['id' => $id])->one();
-        $customerDescription = $customer->first_name . " " . $customer->fathers_name . " " . $customer->last_name . " - " . $customer->phone1;
-
-        $query1 = (new Query())
-                ->select([new Expression("CONCAT('cfw+' , 'id') as superId"), 'code', 'r_available_taemin', 'end_date', 'remaining'])
-                ->from('cfw')
-                ->where(['r_customer' => $id]);
-
-        $query2 = (new Query())
-                ->select([new Expression("CONCAT('foreign_workers+' , 'id') as superId"), 'code', 'r_available_taemin', 'end_date', 'remaining'])
-                ->from('foreign_workers')
-                ->where(['r_customer' => $id]);
-//        die(VarDumper::dump($query1, 4, TRUE));
-
-        $dataProvider1 = new ActiveDataProvider([
-            'query' => $query1,
-        ]);
-
-        $dataProvider2 = new ActiveDataProvider([
-            'query' => $query2,
-        ]);
-
-
-
-
-        return $this->render('@app/views/basic-tbl/index', [
+//    public function actionGetForCustomerX($id) {
+//        $customer = AppCustomers::find()->where(['id' => $id])->one();
+//        $customerDescription = $customer->first_name . " " . $customer->fathers_name . " " . $customer->last_name . " - " . $customer->phone1;
+//
+//        $query1 = (new Query())
+//                ->select([new Expression("CONCAT('cfw+' , 'id') as superId"), 'code', 'r_available_taemin', 'end_date', 'remaining'])
+//                ->from('cfw')
+//                ->where(['r_customer' => $id]);
+//
+//        $query2 = (new Query())
+//                ->select([new Expression("CONCAT('foreign_workers+' , 'id') as superId"), 'code', 'r_available_taemin', 'end_date', 'remaining'])
+//                ->from('foreign_workers')
+//                ->where(['r_customer' => $id]);
+////        die(VarDumper::dump($query1, 4, TRUE));
+//
+//        $dataProvider1 = new ActiveDataProvider([
+//            'query' => $query1,
+//        ]);
+//
+//        $dataProvider2 = new ActiveDataProvider([
+//            'query' => $query2,
+//        ]);
+//
+//
+//
+//
+//        return $this->render('@app/views/basic-tbl/index', [
+////                    'searchModel' => $searchModel,
+//                    'dataProvider1' => $dataProvider1,
+//                    'dataProvider2' => $dataProvider2,
+//                    'customer' => $customer,
+//        ]);
+//    }
+//
+//    public function actionGetForCustomerWIthDATAPROVIDER111TABLE($id) {
+//        $customer = AppCustomers::find()->where(['id' => $id])->one();
+//        $customerDescription = $customer->c_fName . " " . $customer->c_fatherName . " " . $customer->c_lName . " - " . $customer->c_phone1;
+//
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => AppLogs::find()->where(['r_customerId' => $id]),
+//        ]);
+//        $searchModel = new AppLogsSearch();
+//        $dataProvider = $searchModel->searchId(Yii::$app->request->queryParams, $id);
+//
+//        return $this->render('index', [
 //                    'searchModel' => $searchModel,
-                    'dataProvider1' => $dataProvider1,
-                    'dataProvider2' => $dataProvider2,
-                    'customer' => $customer,
-        ]);
-    }
-
-    public function actionGetForCustomerWIthDATAPROVIDER111TABLE($id) {
-        $customer = AppCustomers::find()->where(['id' => $id])->one();
-        $customerDescription = $customer->c_fName . " " . $customer->c_fatherName . " " . $customer->c_lName . " - " . $customer->c_phone1;
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => AppLogs::find()->where(['r_customerId' => $id]),
-        ]);
-        $searchModel = new AppLogsSearch();
-        $dataProvider = $searchModel->searchId(Yii::$app->request->queryParams, $id);
-
-        return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-                    'customer' => $customer,
-        ]);
-    }
+//                    'dataProvider' => $dataProvider,
+//                    'customer' => $customer,
+//        ]);
+//    }
 
     /**
      * @inheritdoc
