@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo $this->render('_form_taemin_name_index_customer', [
             'taeminNamemodel' => $taeminNamemodel,
             'customerId' => $customer->id,
+            'customerName' => $customer->first_name . " " . $customer->fathers_name . " " . $customer->last_name,
         ]);
 //        echo Html::a(Yii::t('basictbl', 'Create App Basic Tbl'), ['create-policy'], ['class' => 'btn btn-success', 'style' => 'display: none;']);
 //        ActiveForm::end();

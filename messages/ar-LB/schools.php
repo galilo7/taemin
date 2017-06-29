@@ -1,6 +1,51 @@
 <?php
 
 return [
-    'ID' => 'id',
-    'ID' => 'id'
+//common attributes
+    'ID' => 'الرمز',
+    'Created At' => 'وقت الإدخال',
+    'Updated At' => 'وقت آخر تعديل',
+//Common attributes ONLY FOR Insurance Policies
+    'Code' => 'رمز البوليصة',
+    'R Available Taemin' => 'التأمينات المتوفرة',
+    'R Customer' => 'الزبون',
+    'Madmoun Name' => 'اسم المضمون',
+    'Contract Date' => 'تاريخ العقد',
+    'Start Date' => 'تاريخ البدء',
+    'End Date' => 'تاريخ الانتهاء',
+    'Sale' => 'المبيع',
+    'Sale Letters' => 'المبيع (بالأحرف)',
+    'Paid' => 'المدفوع',
+    'Paid Letters' => 'المدفوع (بالأحرف)',
+    'Remaining' => 'الباقي',
+    'Coverage' => 'التغطية',
+    'Full Name' => 'الاسم الكامل',
+    'Full Name Of Customer' => 'الزبون',
+    'Taemin Name' => 'التأمين',
+    'Select Available Taemin,,,' => 'اختر من التأمينات المتاحة ...',
+    'Customer Name' => 'اسم الزبون',
+    'Currency in LBP ...' => 'العملة بالليرة اللبنانية ',
+    '' => '',
+//NOT common attributes
+    'School Name' => 'اسم المدرسة',
+    'School Address' => 'عنوان المدرسة',
+    'School Type' => 'نوع المدرسة',
+    'Manager' => 'المدير',
+    'Number Of Students' => 'عدد التلاميذ',
+    'Student Price' => 'سعر التلميذ',
+    'Is Morning' => 'دوام صباحي',
+    'Is Afternoon' => 'دوام مسائي',
+    '' => '',
+//NOT common Views
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+//common Views
+    'Create' => 'إضافة',
+    'Update' => 'تعديل',
+    'Delete' => 'حذف',
+    'Are you sure you want to delete this item?' => 'هل حقا ترغب بحذف هذا البند؟',
+    '' => '',
+    '' => '',
 ];

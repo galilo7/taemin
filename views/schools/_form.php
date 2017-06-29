@@ -1,34 +1,122 @@
 <?php
 
+use app\models\appmodels\AppSchools;
+use kartik\date\DatePicker;
+use yii\db\Query;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppSchools */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $this View */
+/* @var $model AppSchools */
+/* @var $form ActiveForm */
 ?>
-
+<style>
+    .mydatepicker {
+        margin-bottom: 20px;
+    }
+</style>
 <div class="app-schools-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'r_available_taemin')->textInput() ?>
+    <?= $form->field($model, 'taemin_name')->textInput(['maxlength' => true, 'disabled' => true]) ?>
 
-    <?= $form->field($model, 'r_customer')->textInput() ?>
+    <?php
+    $query = (new Query())
+            ->select(['companies.name AS name', 'available_taemin.id as id'])
+            ->from('companies')
+            ->where(['available_taemin.name' => $model->taemin_name])
+            ->leftJoin('available_taemin', 'available_taemin.r_company = companies.id');
+    $rows = $query->all();
 
-    <?= $form->field($model, 'contract_date')->textInput() ?>
+    $items = ArrayHelper::map($rows, 'id', 'name');
 
-    <?= $form->field($model, 'start_date')->textInput() ?>
+    echo $form->field($model, 'r_available_taemin')->dropDownList(
+            $items, ['prompt' => Yii::t('schools', 'Select Available Taemin,,,')]
+    );
+    ?> 
 
-    <?= $form->field($model, 'end_date')->textInput() ?>
+    <?php
+    if (isset($model->customerName)) {
+        echo $form->field($model, 'customerName')->textInput(['disabled' => true]);
+    } else {
+        echo $form->field($model, 'r_customer')->textInput();
+    }
+    ?>
 
-    <?= $form->field($model, 'sale')->textInput() ?>
+
+
+    <div class="mydatepicker">
+        <?php
+        echo '<label class="control-label comon">' . Yii::t("schools", "Contract Date") . '</label>';
+        echo DatePicker::widget([
+            'model' => $model,
+            'type' => 2,
+            'attribute' => 'contract_date',
+            'options' => ['placeholder' => Yii::t('schools', 'Enter contract date ...'),
+                'class' => 'mydatepicker comon',
+                'value' => date('m/d/Y'),
+            ],
+            'pluginOptions' => [
+                'autoclose' => true,
+            ]
+        ]);
+        ?>
+    </div>
+
+    <div class="mydatepicker">
+        <?php
+        echo '<label class="control-label comon">' . Yii::t("schools", "Start Date") . '</label>';
+        echo DatePicker::widget([
+            'model' => $model,
+            'type' => 2,
+            'attribute' => 'start_date',
+            'options' => ['placeholder' => Yii::t('schools', 'Enter start date ...'),
+                'class' => 'mydatepicker comon',
+                'value' => date('m/d/Y'),
+            ],
+            'pluginOptions' => [
+                'autoclose' => true,
+            ]
+        ]);
+        ?>
+    </div>
+
+    <div class="mydatepicker">
+        <?php
+        echo '<label class="control-label comon">' . Yii::t("schools", "End Date") . '</label>';
+        echo DatePicker::widget([
+            'model' => $model,
+            'type' => 2,
+            'attribute' => 'end_date',
+            'options' => ['placeholder' => Yii::t('schools', 'Enter end date ...'),
+                'class' => 'mydatepicker comon',
+                'value' => date('m/d/Y', strtotime("-1 days +1 year")),
+            ],
+            'pluginOptions' => [
+                'autoclose' => true,
+            ]
+        ]);
+        ?>
+    </div>
+
+
+    <?php
+//    echo $form->field($model, 'percentage')->textInput(['type' => 'number', 'min' => 0, 'max' => 100]);
+    echo $form->field($model, 'sale')->textInput(['type' => 'number', 'min' => 0, 'placeHolder' => Yii::t('schools', 'Currency in LBP ...')]);
+    ?>
+    <?php // echo $form->field($model, 'sale')->textInput() ?>
 
     <?= $form->field($model, 'sale_letters')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'paid')->textInput() ?>
+    <?php
+//    $form->field($model, 'paid')->textInput()
+    echo $form->field($model, 'paid')->textInput(['type' => 'number', 'min' => 0, 'placeHolder' => Yii::t('schools', 'Currency in LBP ...')]);
+    ?>
 
     <?= $form->field($model, 'paid_letters')->textInput(['maxlength' => true]) ?>
 
@@ -44,9 +132,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'manager')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'number_of_students')->textInput() ?>
+    <?php
+//    echo $form->field($model, 'number_of_students')->textInput();
+    echo $form->field($model, 'number_of_students')->textInput(['type' => 'number', 'min' => 0]);
+    ?>
 
-    <?= $form->field($model, 'student_price')->textInput() ?>
+    <?php
+//    echo $form->field($model, 'student_price')->textInput();
+    echo $form->field($model, 'student_price')->textInput(['type' => 'number', 'min' => 0]);
+    ?>
 
     <?= $form->field($model, 'is_morning')->checkbox() ?>
 

@@ -1,8 +1,50 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+return [
+//common attributes
+    'ID' => 'الرمز',
+    'Created At' => 'وقت الإدخال',
+    'Updated At' => 'وقت آخر تعديل',
+//Common attributes ONLY FOR Insurance Policies
+    'Code' => 'رمز البوليصة',
+    'R Available Taemin' => 'التأمينات المتوفرة',
+    'R Customer' => 'الزبون',
+    'Madmoun Name' => 'اسم المضمون',
+    'Contract Date' => 'تاريخ العقد',
+    'Start Date' => 'تاريخ البدء',
+    'End Date' => 'تاريخ الانتهاء',
+    'Sale' => 'المبيع',
+    'Sale Letters' => 'المبيع (بالأحرف)',
+    'Paid' => 'المدفوع',
+    'Paid Letters' => 'المدفوع (بالأحرف)',
+    'Remaining' => 'الباقي',
+    'Coverage' => 'التغطية',
+    'Full Name' => 'الاسم الكامل',
+    'Full Name Of Customer' => 'الزبون',
+    'Taemin Name' => 'التأمين',
+    'Select Available Taemin,,, ' => 'اختر من التأمينات المتاحة ...',
+    'Customer Name' => 'اسم الزبون',
+    'Currency in LBP ...' => 'العملة بالليرة اللبنانية ...',
+    '' => '',
+//NOT common attributes
+    'No Persons' => 'عدد الأشخاص',
+    'No Banks' => 'عدد البنوك',
+    'Max Money' => 'المبلغ الأقصى',
+    'Currency' => 'العملة',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+//NOT common Views
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+//common Views
+    'Create' => 'إضافة',
+    'Update' => 'تعديل',
+    'Delete' => 'حذف',
+    'Are you sure you want to delete this item?' => 'هل حقا ترغب بحذف هذا البند؟',
+    '' => '',
+    '' => '',
+];

@@ -28,9 +28,11 @@ class CfwController extends Controller {
         ];
     }
 
-    public function actionCreateForCustomer($customerId, $selectedTaeminName) {
+    public function actionCreateForCustomer($customerId, $customerName, $selectedTaeminName) {
+//        die($customerName);
         $model = new AppCfw();
         $model->r_customer = $customerId;
+        $model->customerName = $customerName;
         $model->taemin_name = $selectedTaeminName;
 
 

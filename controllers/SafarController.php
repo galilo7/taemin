@@ -28,9 +28,10 @@ class SafarController extends Controller {
         ];
     }
 
-    public function actionCreateForCustomer($customerId, $selectedTaeminName) {
+    public function actionCreateForCustomer($customerId, $customerName, $selectedTaeminName) {
         $model = new AppSafar();
         $model->r_customer = $customerId;
+        $model->customerName = $customerName;
         $model->taemin_name = $selectedTaeminName;
 
 

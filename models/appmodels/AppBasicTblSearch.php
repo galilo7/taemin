@@ -91,8 +91,8 @@ class AppBasicTblSearch extends AppBasicTbl {
             $dataProvider = new ArrayDataProvider([
                 'allModels' => $arr,
                 'sort' => [
-                    'attributes' => ['id', 'code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'remaining', 'end_date'],
-//                    'defaultOrder' => ['updated_at' => SORT_ASC],
+                    'attributes' => ['id', 'code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'remaining', 'end_date', 'updated_at'],
+                    'defaultOrder' => ['updated_at' => SORT_DESC],
                 ]
             ]);
             return $dataProvider;
@@ -127,8 +127,8 @@ class AppBasicTblSearch extends AppBasicTbl {
         $dataProvider = new ArrayDataProvider([
             'allModels' => $arr,
             'sort' => [
-                'attributes' => ['id', 'code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'remaining', 'end_date'],
-//                'defaultOrder' => ['updated_at' => SORT_ASC],
+                'attributes' => ['id', 'code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'remaining', 'end_date', 'updated_at'],
+                'defaultOrder' => ['updated_at' => SORT_DESC],
             ]
         ]);
 

@@ -3,6 +3,7 @@
 namespace app\models\appmodels;
 
 use app\models\VehicleTaemin;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 
@@ -13,6 +14,8 @@ use yii\db\Expression;
  */
 class AppVehicleTaemin extends VehicleTaemin {
 
+    public $customerName;
+
     public function behaviors() {
         return [
             [
@@ -21,6 +24,33 @@ class AppVehicleTaemin extends VehicleTaemin {
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new Expression('NOW()'),
             ],
+        ];
+    }
+
+    public function attributeLabels() {
+        return [
+            'id' => Yii::t('vehicle_taemin', 'ID'),
+            'code' => Yii::t('vehicle_taemin', 'Code'),
+            'taemin_name' => Yii::t('vehicle_taemin', 'Taemin Name'),
+            'r_available_taemin' => Yii::t('vehicle_taemin', 'R Available Taemin'),
+            'r_customer' => Yii::t('vehicle_taemin', 'R Customer'),
+            'madmoun_name' => Yii::t('vehicle_taemin', 'Madmoun Name'),
+            'contract_date' => Yii::t('vehicle_taemin', 'Contract Date'),
+            'start_date' => Yii::t('vehicle_taemin', 'Start Date'),
+            'end_date' => Yii::t('vehicle_taemin', 'End Date'),
+            'sale' => Yii::t('vehicle_taemin', 'Sale'),
+            'sale_letters' => Yii::t('vehicle_taemin', 'Sale Letters'),
+            'paid' => Yii::t('vehicle_taemin', 'Paid'),
+            'paid_letters' => Yii::t('vehicle_taemin', 'Paid Letters'),
+            'remaining' => Yii::t('vehicle_taemin', 'Remaining'),
+            'is_military' => Yii::t('vehicle_taemin', 'Is Military'),
+            'r_vehicle' => Yii::t('vehicle_taemin', 'R Vehicle'),
+            'coverage' => Yii::t('vehicle_taemin', 'Coverage'),
+            'is_active' => Yii::t('vehicle_taemin', 'Is Active'),
+            'reserve' => Yii::t('vehicle_taemin', 'Reserve'),
+            'created_at' => Yii::t('vehicle_taemin', 'Created At'),
+            'updated_at' => Yii::t('vehicle_taemin', 'Updated At'),
+            'customerName' => Yii::t('vehicle_taemin', 'Customer Name'),
         ];
     }
 

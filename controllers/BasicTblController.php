@@ -32,7 +32,7 @@ class BasicTblController extends Controller {
         ];
     }
 
-    public function actionCreateForCustomer($customerId) {
+    public function actionCreateForCustomer($customerId, $customerName) {
 
         $taeminNamemodel = new AppNewTaeminPolicy();
 
@@ -83,7 +83,7 @@ class BasicTblController extends Controller {
 //                    break;
             }
 //            die(\yii\helpers\VarDumper::dump($model, 4, true));
-            return $this->redirect([$url, 'customerId' => $customerId, 'selectedTaeminName' => $taeminNamemodel->selectedTaeminName]);
+            return $this->redirect([$url, 'customerId' => $customerId, 'customerName' => $customerName, 'selectedTaeminName' => $taeminNamemodel->selectedTaeminName]);
 
 //            return $this->redirect(['view', 'id' => $model->id]);
         } else {

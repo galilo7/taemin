@@ -48,7 +48,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price')->textInput(['type' => 'number', 'min' => 0]) ?>
 
-    <?= $form->field($model, 'percentage')->textInput(['type' => 'number', 'min' => 0, 'max' => 100]) ?>
+    <?php
+    echo $form->field($model, 'percentage')->textInput(['type' => 'number', 'min' => 0, 'max' => 100]);
+    ?>
 
     <?= $form->field($model, 'price_description')->textInput(['maxlength' => true]) ?>
 

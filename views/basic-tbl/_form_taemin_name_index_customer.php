@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 <div class="app-cfw-form">
     <?php
     $form = ActiveForm::begin([
-                'action' => Url::to(['basic-tbl/create-for-customer', 'customerId' => $customerId])
+                'action' => Url::to(['basic-tbl/create-for-customer', 'customerId' => $customerId, 'customerName' => $customerName])
     ]);
     ?>
 
@@ -58,8 +58,8 @@ use yii\widgets\ActiveForm;
 
 
 </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     function toggleSunbmitBtnShow() {
         alert("hhsohdk");
     }
-</script>
+</script>-->
