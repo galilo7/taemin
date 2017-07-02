@@ -23,6 +23,7 @@ use Yii;
  * @property integer $remaining
  * @property double $coverage
  * @property integer $is_active
+ * @property string $field
  * @property string $reserve
  * @property string $created_at
  * @property string $updated_at
@@ -49,7 +50,7 @@ class BasicTbl extends \yii\db\ActiveRecord
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
-            [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['sale_letters', 'paid_letters', 'field'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
         ];
     }
@@ -76,6 +77,7 @@ class BasicTbl extends \yii\db\ActiveRecord
             'remaining' => Yii::t('basictbl', 'Remaining'),
             'coverage' => Yii::t('basictbl', 'Coverage'),
             'is_active' => Yii::t('basictbl', 'Is Active'),
+            'field' => Yii::t('basictbl', 'Field'),
             'reserve' => Yii::t('basictbl', 'Reserve'),
             'created_at' => Yii::t('basictbl', 'Created At'),
             'updated_at' => Yii::t('basictbl', 'Updated At'),

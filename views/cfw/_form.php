@@ -19,6 +19,7 @@ use yii\widgets\ActiveForm;
 /* @var $form ActiveForm */
 
 PoliciesAsset::register($this);
+$uploadPath = 'uploads/'
 ?>
 <style>
     .mydatepicker {
@@ -183,19 +184,18 @@ PoliciesAsset::register($this);
     ?>
 
     <?php
-    echo $form->field($model, 'field')->textInput(['maxlength' => true]);
     if ($model->field) {
         echo $form->field($model, 'file')->widget(FileInput::classname(), [
             'options' => ['multiple' => false],
             'pluginOptions' => [
                 'initialPreview' => [
-                    'file:///home/user/Desktop/1The_Industrial_Investor_Guide_of_Iraq_Arabic_Final_Aug18_2012.pdf',
-//                    Url::to('@web/' . $model->field),
+//                    'file:///home/user/Desktop/1The_Industrial_Investor_Guide_of_Iraq_Arabic_Final_Aug18_2012.pdf',
+                    Url::to('@web/' . $uploadPath . $model->field),
                 ],
                 'showUpload' => false,
                 'initialPreviewAsData' => true,
                 'initialPreviewConfig' => [
-                    ['caption' => Url::to('@web/' . $model->field), 'size' => '873727'],
+                    ['caption' => "البوليصة", 'size' => '873727'],
                 ],
                 'overwriteInitial' => TRUE,
                 'maxFileSize' => 2800,

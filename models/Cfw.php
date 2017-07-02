@@ -3,8 +3,6 @@
 namespace app\models;
 
 use Yii;
-use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "cfw".
@@ -36,19 +34,21 @@ use yii\db\ActiveRecord;
  * @property AvailableTaemin $rAvailableTaemin
  * @property Customers $rCustomer
  */
-class Cfw extends ActiveRecord {
-
+class Cfw extends \yii\db\ActiveRecord
+{
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'cfw';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['code', 'r_available_taemin', 'r_customer', 'madmoun_name', 'contract_date', 'start_date', 'end_date', 'sale', 'sale_letters'], 'required'],
             [['r_available_taemin', 'r_customer', 'sale', 'paid', 'remaining', 'is_active', 'number_of_workers'], 'integer'],
@@ -67,7 +67,8 @@ class Cfw extends ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => Yii::t('cfw', 'ID'),
             'code' => Yii::t('cfw', 'Code'),
@@ -96,17 +97,18 @@ class Cfw extends ActiveRecord {
     }
 
     /**
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
-    public function getRAvailableTaemin() {
+    public function getRAvailableTaemin()
+    {
         return $this->hasOne(AvailableTaemin::className(), ['id' => 'r_available_taemin']);
     }
 
     /**
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
-    public function getRCustomer() {
+    public function getRCustomer()
+    {
         return $this->hasOne(Customers::className(), ['id' => 'r_customer']);
     }
-
 }

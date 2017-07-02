@@ -19,9 +19,39 @@ class AppSchools extends Schools {
 
     public function rules() {
         $rules = parent::rules();
-//        $rules[] = [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'];
-        $rules[] = [['file'], 'file', 'extensions' => 'pdf'];
+        $rules[] = [['file'], 'file', 'skipOnEmpty' => true];
+
         return $rules;
+    }
+
+    public function deleteFile() {
+        $uploadPath = 'uploads/';
+
+        if (isset($this->field)) {
+            $file = $uploadPath . $this->field;
+        } else {
+            $file = null;
+            $result = "الملف غير موجود في قاعدة البيانات";
+        }
+
+        // check if file exists on server
+        if (empty($file) || !file_exists($file)) {
+            $result = "الملف غير موجود على السيرفر";
+            return $result;
+        }
+
+        // check if uploaded file can be deleted on server
+        if (!unlink($file)) {
+            $result = "لم يتم حذف الملف عن السيرفر";
+            return $result;
+        }
+
+        // if deletion successful, reset your file attributes
+        $this->field = null;
+        $this->save();
+//        $this->filename = null;
+        $result = "تم حذف الملف";
+        return $result;
     }
 
     public function behaviors() {

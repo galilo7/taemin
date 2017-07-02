@@ -16,13 +16,14 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('basictbl', 'Customers'), 'u
 $this->params['breadcrumbs'][] = ['label' => Yii::t('basictbl', 'R Customer'), 'url' => Url::to(['customers/get-for-customer', 'id' => $model['r_customer']])];
 
 $this->params['breadcrumbs'][] = $this->title;
+$uploadPath = 'uploads/';
 ?>
 <div class="app-schools-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('schools', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('schools', 'Update'), ['update-from-customer', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php
 //        echo Html::a(Yii::t('schools', 'Delete'), ['delete', 'id' => $model->id], [
 //            'class' => 'btn btn-danger',
@@ -70,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'format' => 'raw',
                 'attribute' => 'field',
-                'value' => isset($model->field) ? Html::a(Yii::t('schools', 'Press Here To Get The File'), Url::to('@web/' . $model->field)) : "لا يوجد ملف",
+                'value' => isset($model->field) ? Html::a(Yii::t('cfw', 'Press Here To Get The File'), Url::to('@web/' . $uploadPath . $model->field)) : "لا يوجد ملف",
             ],
             'created_at',
             'updated_at',

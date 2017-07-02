@@ -8,9 +8,8 @@ use yii\web\View;
 /* @var $this View */
 /* @var $model AppHospitals */
 
-$this->title = Yii::t('hospitals', 'Update {modelClass}: ', [
-            'modelClass' => 'App Hospitals',
-        ]) . $model->id;
+$this->title = Yii::t('hospitals', 'Update Policy');
+
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('hospitals', 'App Hospitals'), 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('basictbl', 'Customers'), 'url' => Url::to(['customers/index'])];

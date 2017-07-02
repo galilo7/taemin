@@ -8,9 +8,8 @@ use yii\web\View;
 /* @var $this View */
 /* @var $model AppSafar */
 
-$this->title = Yii::t('safar', 'Update {modelClass}: ', [
-            'modelClass' => 'App Safar',
-        ]) . $model->id;
+$this->title = Yii::t('safar', 'Update Policy');
+
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('safar', 'App Safars'), 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 

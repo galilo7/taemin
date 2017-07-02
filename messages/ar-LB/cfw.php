@@ -46,6 +46,7 @@ return [
     'Create App Fire' => 'إضافة بوليصة حريق',
     'Create App Civil' => 'إضافة بوليصة مسؤولية مدنية',
     'Create App Work Accidents' => 'إضافة بوليصة طوارئ عمل',
+    'Update Policy' => 'تعديل البوليصة',
     '' => '',
 //common Views
     'Create' => 'إضافة',

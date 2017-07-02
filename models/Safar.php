@@ -30,6 +30,7 @@ use Yii;
  * @property string $sex
  * @property string $passport_no
  * @property string $birth
+ * @property string $field
  * @property string $created_at
  * @property string $updated_at
  *
@@ -58,7 +59,7 @@ class Safar extends \yii\db\ActiveRecord
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
             [['madmoun_name', 'passport_no'], 'string', 'max' => 250],
-            [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['sale_letters', 'paid_letters', 'field'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['destination_country', 'residence_country', 'nationality'], 'string', 'max' => 150],
             [['sex'], 'string', 'max' => 15],
@@ -96,6 +97,7 @@ class Safar extends \yii\db\ActiveRecord
             'sex' => Yii::t('safar', 'Sex'),
             'passport_no' => Yii::t('safar', 'Passport No'),
             'birth' => Yii::t('safar', 'Birth'),
+            'field' => Yii::t('safar', 'Field'),
             'created_at' => Yii::t('safar', 'Created At'),
             'updated_at' => Yii::t('safar', 'Updated At'),
         ];

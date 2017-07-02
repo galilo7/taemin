@@ -42,7 +42,7 @@ return [
     'Is Afternoon' => 'دوام مسائي',
     '' => '',
 //NOT common Views
-    '' => '',
+    'Update Policy' => 'تعديل البوليصة',
     '' => '',
     '' => '',
     '' => '',

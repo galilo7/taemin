@@ -11,7 +11,7 @@ use yii\web\View;
 /* @var $this View */
 /* @var $model AppCfw */
 
-$this->title = Yii::t('cfw', 'Update App Cfw');
+$this->title = Yii::t('cfw', 'Update Policy');
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('cfw', 'App Cfws'), 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 

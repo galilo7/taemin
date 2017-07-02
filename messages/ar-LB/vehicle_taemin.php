@@ -38,7 +38,7 @@ return [
     'Select By Registration Number,,,' => 'اختر الآلية من خلال رقم التسجيل ...',
     '' => '',
 //NOT common Views
-    '' => '',
+    'Update Policy' => 'تعديل البوليصة',
     '' => '',
     '' => '',
     '' => '',

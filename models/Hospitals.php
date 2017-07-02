@@ -27,6 +27,7 @@ use Yii;
  * @property string $birth
  * @property string $sex
  * @property integer $is_in_out
+ * @property string $field
  * @property string $created_at
  * @property string $updated_at
  *
@@ -55,7 +56,7 @@ class Hospitals extends \yii\db\ActiveRecord
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
-            [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['sale_letters', 'paid_letters', 'field'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['sex'], 'string', 'max' => 25],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
@@ -89,6 +90,7 @@ class Hospitals extends \yii\db\ActiveRecord
             'birth' => Yii::t('hospitals', 'Birth'),
             'sex' => Yii::t('hospitals', 'Sex'),
             'is_in_out' => Yii::t('hospitals', 'Is In Out'),
+            'field' => Yii::t('hospitals', 'Field'),
             'created_at' => Yii::t('hospitals', 'Created At'),
             'updated_at' => Yii::t('hospitals', 'Updated At'),
         ];

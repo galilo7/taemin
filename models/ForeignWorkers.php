@@ -30,6 +30,7 @@ use Yii;
  * @property string $worker_birth
  * @property string $worker_passport_no
  * @property string $worker_job
+ * @property string $field
  * @property string $created_at
  * @property string $updated_at
  *
@@ -57,7 +58,7 @@ class ForeignWorkers extends \yii\db\ActiveRecord
             [['contract_date', 'start_date', 'end_date', 'worker_birth', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
-            [['sale_letters', 'paid_letters', 'kafil_name'], 'string', 'max' => 200],
+            [['sale_letters', 'paid_letters', 'kafil_name', 'field'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['madmoun_name', 'worker_passport_no', 'worker_job'], 'string', 'max' => 250],
             [['worker_nationality'], 'string', 'max' => 30],
@@ -96,6 +97,7 @@ class ForeignWorkers extends \yii\db\ActiveRecord
             'worker_birth' => Yii::t('foreign_workers', 'Worker Birth'),
             'worker_passport_no' => Yii::t('foreign_workers', 'Worker Passport No'),
             'worker_job' => Yii::t('foreign_workers', 'Worker Job'),
+            'field' => Yii::t('foreign_workers', 'Field'),
             'created_at' => Yii::t('foreign_workers', 'Created At'),
             'updated_at' => Yii::t('foreign_workers', 'Updated At'),
         ];

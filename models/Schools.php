@@ -31,6 +31,7 @@ use Yii;
  * @property integer $student_price
  * @property integer $is_morning
  * @property integer $is_afternoon
+ * @property string $field
  * @property string $created_at
  * @property string $updated_at
  *
@@ -58,7 +59,7 @@ class Schools extends \yii\db\ActiveRecord
             [['contract_date', 'start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
-            [['sale_letters', 'paid_letters', 'manager'], 'string', 'max' => 200],
+            [['sale_letters', 'paid_letters', 'manager', 'field'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['school_type'], 'string', 'max' => 25],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
@@ -96,6 +97,7 @@ class Schools extends \yii\db\ActiveRecord
             'student_price' => Yii::t('schools', 'Student Price'),
             'is_morning' => Yii::t('schools', 'Is Morning'),
             'is_afternoon' => Yii::t('schools', 'Is Afternoon'),
+            'field' => Yii::t('schools', 'Field'),
             'created_at' => Yii::t('schools', 'Created At'),
             'updated_at' => Yii::t('schools', 'Updated At'),
         ];

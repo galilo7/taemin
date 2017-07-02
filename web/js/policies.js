@@ -1,6 +1,6 @@
 function clearFile(modelId) {
     deleteUrl = 'delete-file';
-    alert(deleteUrl);
+//    alert();
 
     $.ajax({
     url: deleteUrl,
@@ -9,17 +9,13 @@ function clearFile(modelId) {
             id : modelId,
             },
             success: function (data) {
-                    if (data.result){
-                    alert("تم حذف اتلملف");
-                    }
-                    else {
-                    alert("حصل خطأ أثناء حذف الملف");
-                     }
+                result = data.result; 
+                    alert(result);
             },
             error: function () {
-            alert("حصل خطأ أثناء حذف الملف error");
+            alert("حصل خطأ أثناء حذف الملف ");
             }
-    });
+    }); 
 
     return;              // The function returns the product of p1 and p2
 }

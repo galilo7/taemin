@@ -28,6 +28,7 @@ use Yii;
  * @property integer $no_banks
  * @property double $max_money
  * @property string $currency
+ * @property string $field
  * @property string $created_at
  * @property string $updated_at
  *
@@ -56,7 +57,7 @@ class MoneyTransfer extends \yii\db\ActiveRecord
             [['coverage', 'max_money'], 'number'],
             [['code', 'taemin_name', 'currency'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
-            [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['sale_letters', 'paid_letters', 'field'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
             [['r_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['r_customer' => 'id']],
@@ -90,6 +91,7 @@ class MoneyTransfer extends \yii\db\ActiveRecord
             'no_banks' => Yii::t('money_transfer', 'No Banks'),
             'max_money' => Yii::t('money_transfer', 'Max Money'),
             'currency' => Yii::t('money_transfer', 'Currency'),
+            'field' => Yii::t('money_transfer', 'Field'),
             'created_at' => Yii::t('money_transfer', 'Created At'),
             'updated_at' => Yii::t('money_transfer', 'Updated At'),
         ];

@@ -35,6 +35,36 @@ class AppVehicleTaemin extends VehicleTaemin {
         ];
     }
 
+    public function deleteFile() {
+        $uploadPath = 'uploads/';
+
+        if (isset($this->field)) {
+            $file = $uploadPath . $this->field;
+        } else {
+            $file = null;
+            $result = "الملف غير موجود في قاعدة البيانات";
+        }
+
+        // check if file exists on server
+        if (empty($file) || !file_exists($file)) {
+            $result = "الملف غير موجود على السيرفر";
+            return $result;
+        }
+
+        // check if uploaded file can be deleted on server
+        if (!unlink($file)) {
+            $result = "لم يتم حذف الملف عن السيرفر";
+            return $result;
+        }
+
+        // if deletion successful, reset your file attributes
+        $this->field = null;
+        $this->save();
+//        $this->filename = null;
+        $result = "تم حذف الملف";
+        return $result;
+    }
+
     public function attributeLabels() {
         return [
             'id' => Yii::t('vehicle_taemin', 'ID'),

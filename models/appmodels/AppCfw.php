@@ -34,8 +34,7 @@ class AppCfw extends Cfw {
     public function rules() {
         $rules = parent::rules();
         $rules[] = [['file'], 'file', 'skipOnEmpty' => true];
-//        $rules[] = [['file'], 'safe'];
-//        $rules[] = [['filex'], 'file', 'extensions' => 'pdf'];
+
         return $rules;
     }
 
@@ -141,27 +140,33 @@ class AppCfw extends Cfw {
      * @return boolean the status of deletion
      */
     public function deleteFile() {
+        $uploadPath = 'uploads/';
+
         if (isset($this->field)) {
-            $file = $this->field;
+            $file = $uploadPath . $this->field;
         } else {
             $file = null;
+            $result = "الملف غير موجود في قاعدة البيانات";
         }
 
         // check if file exists on server
         if (empty($file) || !file_exists($file)) {
-            return false;
+            $result = "الملف غير موجود على السيرفر";
+            return $result;
         }
 
         // check if uploaded file can be deleted on server
         if (!unlink($file)) {
-            return false;
+            $result = "لم يتم حذف الملف عن السيرفر";
+            return $result;
         }
 
         // if deletion successful, reset your file attributes
         $this->field = null;
+        $this->save();
 //        $this->filename = null;
-
-        return true;
+        $result = "تم حذف الملف";
+        return $result;
     }
 
 }

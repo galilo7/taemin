@@ -26,6 +26,7 @@ use Yii;
  * @property double $coverage
  * @property integer $is_active
  * @property string $reserve
+ * @property string $field
  * @property string $created_at
  * @property string $updated_at
  *
@@ -55,7 +56,7 @@ class VehicleTaemin extends \yii\db\ActiveRecord
             [['coverage'], 'number'],
             [['code', 'taemin_name'], 'string', 'max' => 100],
             [['madmoun_name'], 'string', 'max' => 250],
-            [['sale_letters', 'paid_letters'], 'string', 'max' => 200],
+            [['sale_letters', 'paid_letters', 'field'], 'string', 'max' => 200],
             [['reserve'], 'string', 'max' => 50],
             [['r_vehicle'], 'exist', 'skipOnError' => true, 'targetClass' => Vehicles::className(), 'targetAttribute' => ['r_vehicle' => 'id']],
             [['r_available_taemin'], 'exist', 'skipOnError' => true, 'targetClass' => AvailableTaemin::className(), 'targetAttribute' => ['r_available_taemin' => 'id']],
@@ -88,6 +89,7 @@ class VehicleTaemin extends \yii\db\ActiveRecord
             'coverage' => Yii::t('vehicle_taemin', 'Coverage'),
             'is_active' => Yii::t('vehicle_taemin', 'Is Active'),
             'reserve' => Yii::t('vehicle_taemin', 'Reserve'),
+            'field' => Yii::t('vehicle_taemin', 'Field'),
             'created_at' => Yii::t('vehicle_taemin', 'Created At'),
             'updated_at' => Yii::t('vehicle_taemin', 'Updated At'),
         ];

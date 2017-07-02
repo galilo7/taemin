@@ -40,7 +40,7 @@ return [
     'Worker Job' => 'وظيفة العامل',
     '' => '',
 //NOT common Views
-    '' => '',
+    'Update Policy' => 'تعديل البوليصة',
     '' => '',
     '' => '',
     '' => '',

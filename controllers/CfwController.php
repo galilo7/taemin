@@ -6,8 +6,10 @@ use app\models\appmodels\AppCfw;
 use app\models\CfwSearch;
 use Yii;
 use yii\filters\VerbFilter;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
 /**
@@ -38,16 +40,17 @@ class CfwController extends Controller {
         $model->customerName = $customerName;
         $model->taemin_name = $selectedTaeminName;
 
+        $uploadPath = 'uploads/';
 
         if ($model->load(Yii::$app->request->post())) {
-//            die(\yii\helpers\VarDumper::dump($model->file, 3, true));
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('uploads/' . time() . '.' . $model->file->extension);
-            $model->field = 'uploads/' . time() . '.' . $model->file->extension;
-
+            if (isset($model->file)) {
+                $model->file->saveAs($uploadPath . time() . '.' . $model->file->extension);
+                $model->field = time() . '.' . $model->file->extension;
+            } else {
+                $model->field = NULL;
+            }
             if ($model->save()) {
-//                $image->saveAs($path);
-
                 return $this->redirect(['view-from-customer', 'id' => $model->id]);
             }
         } else {
@@ -63,42 +66,30 @@ class CfwController extends Controller {
         return $this->redirect(['view-from-customer', 'id' => $model->id]);
     }
 
-    public function actionViewFromCustomer($id) {
-        return $this->render('view_customer', [
-                    'model' => $this->findModel($id),
-        ]);
-    }
-
-//    public function actionUpdateFromCustomer($id) {
-//        $model = $this->findModel($id);
-//    }
-
     public function actionUpdateFromCustomer($id) {
+        $uploadPath = 'uploads/';
 
         $model = $this->findModel($id);
+
         $oldField = $model->field;
+        $oldFile = $uploadPath . $oldField;
 
         if ($model->load(Yii::$app->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            if (isset($model->file)) {
-                if (isset($oldField) and file_exists($oldField)) {
-                    unlink($oldField);
+
+            if (isset($model->file)) { //if there is a new file, must remove the old one if exists
+                if (isset($oldField) and file_exists($oldFile)) {
+                    unlink($oldFile);
                 }
-                $model->file->saveAs('uploads/' . time() . '.' . $model->file->extension);
-                $model->field = 'uploads/' . time() . '.' . $model->file->extension;
-            } else { //case no new file
+                $model->file->saveAs($uploadPath . time() . '.' . $model->file->extension);
+                $model->field = time() . '.' . $model->file->extension;
+            } else { //case no new file keep old file -- NOTICE: IT IS REMOVED BY AN AJAX CALL WHEN THE USER CLICKS ON DELETE
                 $model->field = $oldField;
             }
 
             if ($model->save()) {
-//                $image->saveAs($path);
                 return $this->redirect(['view-from-customer', 'id' => $model->id]);
             }
-            //        if ($model->load(Yii::$app->request->post())) {
-//         die(smna   
-//        }
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view_customer', 'id' => $model->id]);
         } else {
 
             return $this->render('update_customer', [
@@ -113,13 +104,37 @@ class CfwController extends Controller {
             $id = explode(":", $data['id']);
             $id = $id[0];
             $model = $this->findModel($id);
+//            die(\yii\helpers\VarDumper::dump($model, 4, true));
             $result = $model->deleteFile();
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            \Yii::$app->response->format = Response::FORMAT_JSON;
             return [
                 'result' => $result,
             ];
         }
     }
+
+    public function actionDelete($id) {
+
+        $model = $this->findModel($id);
+        $result = $model->deleteFile();
+
+        $model->delete();
+
+        return $this->redirect(['basic-tbl/index']);
+    }
+
+    public function actionViewFromCustomer($id) {
+        return $this->render('view_customer', [
+                    'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Deletes an existing AppCfw model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
 
     /**
      * Lists all AppCfw models.
@@ -174,7 +189,7 @@ class CfwController extends Controller {
 
         if ($model->load(Yii::$app->request->post())) {
             echo 'updateFromUpdateDefault';
-            die(\yii\helpers\VarDumper::dump($model, 4, true));
+//            die(VarDumper::dump($model, 4, true));
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -183,25 +198,6 @@ class CfwController extends Controller {
                         'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Deletes an existing AppCfw model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id) {
-
-        $model = $this->findModel($id);
-        if (isset($model->field)) {
-            if (fileExists($model->field)) {
-                unlink(Yii::getAlias("@web/uploads/" . $model->field));
-            }
-        }
-        $model->delete();
-
-        return $this->redirect(['basic-tbl/index']);
     }
 
     /**
