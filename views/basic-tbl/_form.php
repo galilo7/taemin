@@ -1,11 +1,13 @@
 <?php
 
+use app\models\appmodels\AppBasicTbl;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppBasicTbl */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $this View */
+/* @var $model AppBasicTbl */
+/* @var $form ActiveForm */
 ?>
 
 <div class="app-basic-tbl-form">

@@ -1,7 +1,9 @@
 <?php
 
+use app\models\appmodels\AppVehicles;
 use app\models\appmodels\AppVehicleTaemin;
 use kartik\date\DatePicker;
+use kartik\select2\Select2;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -12,7 +14,11 @@ use yii\widgets\ActiveForm;
 /* @var $model AppVehicleTaemin */
 /* @var $form ActiveForm */
 ?>
-
+<style>
+    .mydatepicker {
+        margin-bottom: 20px;
+    }
+</style>
 <div class="app-vehicle-taemin-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -56,10 +62,11 @@ use yii\widgets\ActiveForm;
             'attribute' => 'contract_date',
             'options' => ['placeholder' => Yii::t('vehicle_taemin', 'Enter contract date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y'),
+                'value' => date('Y-m-d'),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
@@ -74,10 +81,11 @@ use yii\widgets\ActiveForm;
             'attribute' => 'start_date',
             'options' => ['placeholder' => Yii::t('vehicle_taemin', 'Enter start date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y'),
+                'value' => date('Y-m-d'),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
@@ -92,10 +100,11 @@ use yii\widgets\ActiveForm;
             'attribute' => 'end_date',
             'options' => ['placeholder' => Yii::t('vehicle_taemin', 'Enter end date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y', strtotime("-1 days +1 year")),
+                'value' => date('Y-m-d', strtotime("-1 days +1 year")),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
@@ -122,13 +131,63 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'is_military')->checkbox() ?>
 
-    <?= $form->field($model, 'r_vehicle')->textInput() ?>
+    <?php
+//    echo $form->field($model, 'r_vehicle')->textInput();
+    $itemsVehicles = ArrayHelper::map(AppVehicles::find()->all(), 'id', 'registration_number');
+//    die(\yii\helpers\VarDumper::dump($itemsVehicles, 4, true));
+//    $itemsVehicles = [
+//        [1 => '113'],
+//        [2 => '4152'],
+//        [3 => '111'],
+//    ];
+//    $itemsVehicles = json_encode($itemsVehicles);
+    echo $form->field($model, 'r_vehicle')
+            ->widget(Select2::classname(), [
+                'name' => 'r_vehicle',
+                'data' => $itemsVehicles,
+                'size' => Select2::MEDIUM,
+                'options' => [
+                    'placeholder' => Yii::t('vehicle_taemin', 'Select By Registration Number,,,'),
+                    'dir' => 'rtl'
+                ],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+                    ]
+    );
+//    );
+//    echo $form->field($model, 'r_vehicle')->widget(TypeaheadBasic::classname(), [
+//        'data' => $itemsVehicles,
+//        'rtl' => true,
+//        'dataset' => [
+//            [
+//                'local' => $itemsVehicles,
+//                'limit' => 10
+//            ],
+//        ],
+//        'pluginOptions' => ['highlight' => true],
+//        'options' => ['placeholder' => Yii::t('vehicle_taemin', 'Select By Registration Number,,,')],
+//    ]);
+//    echo $form->field($model, 'r_vehicle')->dropDownList(
+//            $itemsVehicles, ['prompt' => Yii::t('vehicle_taemin', 'Select By Registration Number,,,')]
+//    );
+//    echo AutoComplete::widget([
+//        'name' => 'Vehicle',
+//        'id' => 'ddd',
+//        'clientOptions' => [
+//            'source' => $itemsVehicles,
+//            'autoFill' => true,
+//            'select' => new JsExpression("function( event, ui ) {
+//        $('#city-state_name').val(ui.item.id);//#City-state_name is the id of hiddenInput.
+//     }")],
+//    ]);
+    ?>
 
     <?= $form->field($model, 'coverage')->textInput() ?>
 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('vehicletaemin', 'Create') : Yii::t('vehicletaemin', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('vehicle_taemin', 'Create') : Yii::t('vehicle_taemin', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

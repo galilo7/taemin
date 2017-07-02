@@ -26,6 +26,11 @@ return [
     'Customer Name' => 'اسم الزبون',
     'Currency in LBP ...' => 'العملة بالليرة اللبنانية ',
     '' => '',
+    'Press Here To Get The File' => 'إضغط هنا للحصول على الملف',
+    'File' => 'الملف',
+    'Field' => 'الملف',
+    'Deactivate' => 'إلغاء البوليصة',
+    'Are you sure you want to deactivate this item?' => 'هل حقا ترغب بإلغاء هذه البوليصة؟',
 //NOT common attributes
     'Kafil Name' => 'اسم الكفيل',
     'Worker Nationality' => 'جنسية العامل',

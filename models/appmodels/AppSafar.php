@@ -15,6 +15,14 @@ use yii\db\Expression;
 class AppSafar extends Safar {
 
     public $customerName;
+    public $file;
+
+    public function rules() {
+        $rules = parent::rules();
+//        $rules[] = [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'];
+        $rules[] = [['file'], 'file', 'extensions' => 'pdf'];
+        return $rules;
+    }
 
     public function behaviors() {
         return [
@@ -54,6 +62,8 @@ class AppSafar extends Safar {
             'birth' => Yii::t('safar', 'Birth'),
             'created_at' => Yii::t('safar', 'Created At'),
             'updated_at' => Yii::t('safar', 'Updated At'),
+            'field' => Yii::t('safar', 'Field'),
+            'file' => Yii::t('safar', 'File'),
             'customerName' => Yii::t('safar', 'Customer Name'),
         ];
     }

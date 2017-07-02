@@ -49,8 +49,9 @@ use yii\widgets\ActiveForm;
         <?php
         echo Html::submitButton(Yii::t('basictbl', 'Create App Basic Tbl'), ['class' => 'btn btn-success']);
         ?>
+
     </div>
-    <?php // $form->end();    ?>
+    <?php // $form->end();      ?>
     <?php
     ActiveForm::end();
 //    $this->endBlock();

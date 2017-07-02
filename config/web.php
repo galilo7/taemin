@@ -72,6 +72,11 @@ $config = [
                 ],
             ],
         ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'Y-m-d',
+            'datetimeFormat' => 'php:d-M-Y H:i:s',
+            'timeFormat' => 'H:i:s',]
     ],
     'modules' => [
         'gridview' => [

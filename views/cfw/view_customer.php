@@ -17,20 +17,29 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('basictbl', 'R Customer'), '
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="app-cfw-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('cfw', 'Update'), ['update-from-customer', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?=
-        Html::a(Yii::t('cfw', 'Delete'), ['delete', 'id' => $model->id], [
+        <?php
+//        echo Html::a(Yii::t('cfw', 'Delete'), ['delete', 'id' => $model->id], [
+//            'class' => 'btn btn-danger',
+//            'data' => [
+//                'confirm' => Yii::t('cfw', 'Are you sure you want to delete this item?'),
+//                'method' => 'post',
+//            ],
+//        ]);
+
+        echo Html::a(Yii::t('cfw', 'Deactivate'), ['deactivate', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('cfw', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('cfw', 'Are you sure you want to deactivate this item?'),
                 'method' => 'post',
             ],
-        ])
+        ]);
         ?>
     </p>
 
@@ -56,7 +65,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'property_no',
             'number_of_workers',
             'building',
-            'field',
+//            'field',
+            [
+                'format' => 'raw',
+                'attribute' => 'field',
+                'value' => isset($model->field) ? Html::a(Yii::t('cfw', 'Press Here To Get The File'), Url::to('@web/' . $model->field)) : "لا يوجد ملف",
+            ],
             'created_at',
             'updated_at',
         ],

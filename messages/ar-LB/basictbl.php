@@ -30,6 +30,8 @@ return [
     'Create App Basic Tbl' => 'إضافة بوليصة تأمين',
     'Select Customer Name' => 'اختر الزبون ...',
     'Select Available Taemin' => 'اختر التأمين ...',
+    'Customers' => 'الزبائن',
+    'Add Vehicle' => 'إضافة آلية',
     '' => '',
     '' => '',
 //NOT common Views

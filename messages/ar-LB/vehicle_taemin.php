@@ -27,8 +27,15 @@ return [
     'Currency in LBP ...' => 'العملة بالليرة اللبنانية ',
     '' => '',
     '' => '',
+    'Press Here To Get The File' => 'إضغط هنا للحصول على الملف',
+    'File' => 'الملف',
+    'Field' => 'الملف',
+    'Deactivate' => 'إلغاء البوليصة',
+    'Are you sure you want to deactivate this item?' => 'هل حقا ترغب بإلغاء هذه البوليصة؟',
 //NOT common attributes
     'Is Military' => 'عسكري',
+    'R Vehicle' => 'الآلية',
+    'Select By Registration Number,,,' => 'اختر الآلية من خلال رقم التسجيل ...',
     '' => '',
 //NOT common Views
     '' => '',

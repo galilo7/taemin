@@ -1,9 +1,12 @@
 <?php
 
+use app\models\appmodels\AppMoneyTransfer;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppMoneyTransfer */
+/* @var $this View */
+/* @var $model AppMoneyTransfer */
 
 $this->title = Yii::t('moneytransfer', 'Update {modelClass}: ', [
             'modelClass' => 'App Money Transfer',

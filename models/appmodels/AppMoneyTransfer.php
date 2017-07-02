@@ -15,6 +15,14 @@ use yii\db\Expression;
 class AppMoneyTransfer extends MoneyTransfer {
 
     public $customerName;
+    public $file;
+
+    public function rules() {
+        $rules = parent::rules();
+//        $rules[] = [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'];
+        $rules[] = [['file'], 'file', 'extensions' => 'pdf'];
+        return $rules;
+    }
 
     public function behaviors() {
         return [
@@ -52,6 +60,8 @@ class AppMoneyTransfer extends MoneyTransfer {
             'currency' => Yii::t('money_transfer', 'Currency'),
             'created_at' => Yii::t('money_transfer', 'Created At'),
             'updated_at' => Yii::t('money_transfer', 'Updated At'),
+            'field' => Yii::t('money_transfer', 'Field'),
+            'file' => Yii::t('money_transfer', 'File'),
             'customerName' => Yii::t('money_transfer', 'Customer Name'),
         ];
     }

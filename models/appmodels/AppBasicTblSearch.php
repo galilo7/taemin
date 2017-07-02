@@ -50,7 +50,7 @@ class AppBasicTblSearch extends AppBasicTbl {
      *
      * @return ActiveDataProvider
      */
-    public function searchForCustomer($params, $customerId) {
+    public function searchForCustomer($params, $customerId, $isActive) {
         $query = (new Query())
                 ->select(["CONCAT('basic-tbl+', basic_tbl.id) AS id", 'basic_tbl.r_customer', 'basic_tbl.r_available_taemin', 'basic_tbl.code', 'basic_tbl.madmoun_name', 'basic_tbl.remaining', "CONCAT(customers.first_name, customers.fathers_name, customers.last_name) AS fullName", 'customers.first_name', 'customers.fathers_name', 'customers.last_name', 'available_taemin.name As taemin_name'])
                 ->from('basic_tbl')

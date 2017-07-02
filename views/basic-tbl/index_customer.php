@@ -147,6 +147,12 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]);
 
+
+//    echo Html::submitButton(Yii::t('basictbl', 'Add Car'), ['class' => 'btn btn-success']);
+    $urlCreateVehicle = Url::to(['vehicles/create-for-customer', 'customerId' => $customer->id]);
+    $urlCreateVehicle = Url::to(['vehicles/create']);
+    echo Html::a(Yii::t('basictbl', 'Add Vehicle'), $urlCreateVehicle, ['class' => 'btn btn-success']);
+
     function idxToAction($idX = "", $action) {
         $del = strpos($idX, '+');
         $tbl = substr($idX, 0, $del);
@@ -177,8 +183,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 $url = 'schools/' . $action;
                 break;
 
-            case 'vahicle-taemin' :
-                $url = 'vahicle-taemin/' . $action;
+            case 'vehicle-taemin' :
+                $url = 'vehicle-taemin/' . $action;
                 break;
 
             default : return NULL;

@@ -1,9 +1,12 @@
 <?php
 
+use app\models\appmodels\AppForeignWorkers;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppForeignWorkers */
+/* @var $this View */
+/* @var $model AppForeignWorkers */
 
 $this->title = Yii::t('foreignworkers', 'Update {modelClass}: ', [
             'modelClass' => 'App Foreign Workers',

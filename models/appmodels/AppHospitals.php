@@ -15,6 +15,14 @@ use yii\db\Expression;
 class AppHospitals extends Hospitals {
 
     public $customerName;
+    public $file;
+
+    public function rules() {
+        $rules = parent::rules();
+//        $rules[] = [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'];
+        $rules[] = [['file'], 'file', 'extensions' => 'pdf'];
+        return $rules;
+    }
 
     public function behaviors() {
         return [
@@ -51,6 +59,8 @@ class AppHospitals extends Hospitals {
             'is_in_out' => Yii::t('hospitals', 'Is In Out'),
             'created_at' => Yii::t('hospitals', 'Created At'),
             'updated_at' => Yii::t('hospitals', 'Updated At'),
+            'field' => Yii::t('hospitals', 'Field'),
+            'file' => Yii::t('hospitals', 'File'),
             'customerName' => Yii::t('hospitals', 'Customer Name'),
         ];
     }

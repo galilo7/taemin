@@ -60,10 +60,11 @@ use yii\widgets\ActiveForm;
             'attribute' => 'contract_date',
             'options' => ['placeholder' => Yii::t('hospitals', 'Enter contract date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y'),
+                'value' => date('Y-m-d'),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
@@ -78,10 +79,11 @@ use yii\widgets\ActiveForm;
             'attribute' => 'start_date',
             'options' => ['placeholder' => Yii::t('hospitals', 'Enter start date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y'),
+                'value' => date('Y-m-d'),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
@@ -96,10 +98,11 @@ use yii\widgets\ActiveForm;
             'attribute' => 'end_date',
             'options' => ['placeholder' => Yii::t('hospitals', 'Enter end date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y', strtotime("-1 days +1 year")),
+                'value' => date('Y-m-d', strtotime("-1 days +1 year")),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
@@ -138,6 +141,7 @@ use yii\widgets\ActiveForm;
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>

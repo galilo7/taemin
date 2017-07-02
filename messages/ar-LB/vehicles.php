@@ -17,7 +17,7 @@ return [
     'Shecci Number' => 'رقم الهيكل',
     'Engine Number' => 'رقم المحرك',
     'Preview Month' => 'شهر المعاينة',
-    'Preview Cost' => 'قيمة المعاية (ليرة لبنانية)',
+    'Preview Cost' => 'قيمة المعاينة (ليرة لبنانية)',
     '' => '',
     '' => '',
 //NOT common Views

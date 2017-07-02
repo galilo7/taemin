@@ -47,7 +47,7 @@ use yii\widgets\ActiveForm;
     ?>
 
 
-    <?= $form->field($model, 'net_load')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'net_load')->textInput(['type' => 'number', 'min' => 0]) ?>
 
     <?= $form->field($model, 'registration_number')->textInput(['maxlength' => true]) ?>
 
@@ -63,7 +63,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'engine_number')->textInput(['maxlength' => true]) ?>
 
     <?php
-    echo $form->field($model, 'preview_month')->textInput();
+//    echo $form->field($model, 'preview_month')->textInput();
     $months = [1 => "كانون الثاني", 2 => "شباط", 3 => "آذار", 4 => "نيسان", 5 => "أيار", 6 => "حزيران", 7 => "تموز", 8 => "آب", 9 => "أيلول", 10 => "تشرين الأول", 11 => "تشرين الثاني", 12 => "كانون الأول"];
     echo $form->field($model, 'preview_month')->dropDownList(
             $months, // Flat array ('id'=>'label')

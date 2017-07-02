@@ -1,10 +1,13 @@
 <?php
 
+use app\models\appmodels\AppSchools;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppSchools */
+/* @var $this View */
+/* @var $model AppSchools */
 
 $this->title = $model->id;
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('schools', 'App Schools'), 'url' => ['index']];
@@ -20,14 +23,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('schools', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?=
-        Html::a(Yii::t('schools', 'Delete'), ['delete', 'id' => $model->id], [
+        <?php
+//        echo Html::a(Yii::t('schools', 'Delete'), ['delete', 'id' => $model->id], [
+//            'class' => 'btn btn-danger',
+//            'data' => [
+//                'confirm' => Yii::t('schools', 'Are you sure you want to delete this item?'),
+//                'method' => 'post',
+//            ],
+//        ]);
+
+        echo Html::a(Yii::t('schools', 'Deactivate'), ['deactivate', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('schools', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('schools', 'Are you sure you want to deactivate this item?'),
                 'method' => 'post',
             ],
-        ])
+        ]);
         ?>
     </p>
 
@@ -56,6 +67,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'student_price',
             'is_morning',
             'is_afternoon',
+            [
+                'format' => 'raw',
+                'attribute' => 'field',
+                'value' => isset($model->field) ? Html::a(Yii::t('schools', 'Press Here To Get The File'), Url::to('@web/' . $model->field)) : "لا يوجد ملف",
+            ],
             'created_at',
             'updated_at',
         ],

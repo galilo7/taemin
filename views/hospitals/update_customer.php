@@ -1,9 +1,12 @@
 <?php
 
+use app\models\appmodels\AppHospitals;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppHospitals */
+/* @var $this View */
+/* @var $model AppHospitals */
 
 $this->title = Yii::t('hospitals', 'Update {modelClass}: ', [
             'modelClass' => 'App Hospitals',

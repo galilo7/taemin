@@ -16,13 +16,13 @@ use yii\web\NotFoundHttpException;
  */
 class CustomersController extends Controller {
 
-    public function actionGetForCustomer($id) {
+    public function actionGetForCustomer($id, $isActive = 2) {
         $customer = AppCustomers::find()->where(['id' => $id])->one();
         $customerDescription = $customer->first_name . " " . $customer->fathers_name . " " . $customer->last_name . " - " . $customer->phone1;
         $this->view->title = Yii::t('basictbl', 'App Basic Tbls') . " -- " . $customerDescription;
 
         $searchModel = new AppBasicTblSearch();
-        $dataProvider = $searchModel->searchForCustomer(Yii::$app->request->queryParams, $id); // brings from all search models
+        $dataProvider = $searchModel->searchForCustomer(Yii::$app->request->queryParams, $id, $isActive); // brings from all search models
 
         $taeminNamemodel = new AppNewTaeminPolicy();
 

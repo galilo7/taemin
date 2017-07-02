@@ -16,6 +16,14 @@ class AppForeignWorkers extends ForeignWorkers {
 
     public $customerName;
     public $fullName;
+    public $file;
+
+    public function rules() {
+        $rules = parent::rules();
+//        $rules[] = [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'];
+        $rules[] = [['file'], 'file', 'extensions' => 'pdf'];
+        return $rules;
+    }
 
     public function behaviors() {
         return [
@@ -63,6 +71,8 @@ class AppForeignWorkers extends ForeignWorkers {
             'worker_job' => Yii::t('foreign_workers', 'Worker Job'),
             'created_at' => Yii::t('foreign_workers', 'Created At'),
             'updated_at' => Yii::t('foreign_workers', 'Updated At'),
+            'field' => Yii::t('foreign_workers', 'Field'),
+            'file' => Yii::t('foreign_workers', 'File'),
             'customerName' => Yii::t('foreign_workers', 'Customer Name'),
         ];
     }

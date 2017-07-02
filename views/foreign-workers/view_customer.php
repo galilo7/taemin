@@ -1,10 +1,13 @@
 <?php
 
+use app\models\appmodels\AppForeignWorkers;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppForeignWorkers */
+/* @var $this View */
+/* @var $model AppForeignWorkers */
 
 $this->title = $model->id;
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('foreignworkers', 'App Foreign Workers'), 'url' => ['index']];
@@ -19,15 +22,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('foreignworkers', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?=
-        Html::a(Yii::t('foreignworkers', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('foreign_workers', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php
+//        echo Html::a(Yii::t('foreign_workers', 'Delete'), ['delete', 'id' => $model->id], [
+//            'class' => 'btn btn-danger',
+//            'data' => [
+//                'confirm' => Yii::t('foreign_workers', 'Are you sure you want to delete this item?'),
+//                'method' => 'post',
+//            ],
+//        ]);
+
+        echo Html::a(Yii::t('foreign-workers', 'Deactivate'), ['deactivate', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('foreignworkers', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('foreign_workers', 'Are you sure you want to deactivate this item?'),
                 'method' => 'post',
             ],
-        ])
+        ]);
         ?>
     </p>
 
@@ -55,6 +66,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'worker_birth',
             'worker_passport_no',
             'worker_job',
+            [
+                'format' => 'raw',
+                'attribute' => 'field',
+                'value' => isset($model->field) ? Html::a(Yii::t('foreign_workers', 'Press Here To Get The File'), Url::to('@web/' . $model->field)) : "لا يوجد ملف",
+            ],
             'created_at',
             'updated_at',
         ],

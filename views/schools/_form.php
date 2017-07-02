@@ -59,10 +59,11 @@ use yii\widgets\ActiveForm;
             'attribute' => 'contract_date',
             'options' => ['placeholder' => Yii::t('schools', 'Enter contract date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y'),
+                'value' => date('Y-m-d'),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
@@ -77,38 +78,40 @@ use yii\widgets\ActiveForm;
             'attribute' => 'start_date',
             'options' => ['placeholder' => Yii::t('schools', 'Enter start date ...'),
                 'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y'),
+                'value' => date('Y-m-d'),
             ],
             'pluginOptions' => [
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
             ]
         ]);
         ?>
     </div>
 
     <div class="mydatepicker">
-        <?php
-        echo '<label class="control-label comon">' . Yii::t("schools", "End Date") . '</label>';
-        echo DatePicker::widget([
-            'model' => $model,
-            'type' => 2,
-            'attribute' => 'end_date',
-            'options' => ['placeholder' => Yii::t('schools', 'Enter end date ...'),
-                'class' => 'mydatepicker comon',
-                'value' => date('m/d/Y', strtotime("-1 days +1 year")),
-            ],
-            'pluginOptions' => [
-                'autoclose' => true,
-            ]
-        ]);
-        ?>
+<?php
+echo '<label class="control-label comon">' . Yii::t("schools", "End Date") . '</label>';
+echo DatePicker::widget([
+    'model' => $model,
+    'type' => 2,
+    'attribute' => 'end_date',
+    'options' => ['placeholder' => Yii::t('schools', 'Enter end date ...'),
+        'class' => 'mydatepicker comon',
+        'value' => date('Y-m-d', strtotime("-1 days +1 year")),
+    ],
+    'pluginOptions' => [
+        'autoclose' => true,
+        'format' => 'yyyy-mm-dd',
+    ]
+]);
+?>
     </div>
 
 
-    <?php
+<?php
 //    echo $form->field($model, 'percentage')->textInput(['type' => 'number', 'min' => 0, 'max' => 100]);
-    echo $form->field($model, 'sale')->textInput(['type' => 'number', 'min' => 0, 'placeHolder' => Yii::t('schools', 'Currency in LBP ...')]);
-    ?>
+echo $form->field($model, 'sale')->textInput(['type' => 'number', 'min' => 0, 'placeHolder' => Yii::t('schools', 'Currency in LBP ...')]);
+?>
     <?php // echo $form->field($model, 'sale')->textInput() ?>
 
     <?= $form->field($model, 'sale_letters')->textInput(['maxlength' => true]) ?>
@@ -148,9 +151,9 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('schools', 'Create') : Yii::t('schools', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+<?= Html::submitButton($model->isNewRecord ? Yii::t('schools', 'Create') : Yii::t('schools', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 
 </div>

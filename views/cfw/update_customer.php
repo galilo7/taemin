@@ -1,5 +1,8 @@
 <?php
 
+//use yii\helpers\Url;
+
+
 use app\models\appmodels\AppCfw;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -8,9 +11,7 @@ use yii\web\View;
 /* @var $this View */
 /* @var $model AppCfw */
 
-$this->title = Yii::t('cfw', 'Update {modelClass}: ', [
-            'modelClass' => 'App Cfw',
-        ]) . $model->id;
+$this->title = Yii::t('cfw', 'Update App Cfw');
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('cfw', 'App Cfws'), 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 

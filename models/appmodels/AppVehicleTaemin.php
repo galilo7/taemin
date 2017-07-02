@@ -15,6 +15,14 @@ use yii\db\Expression;
 class AppVehicleTaemin extends VehicleTaemin {
 
     public $customerName;
+    public $file;
+
+    public function rules() {
+        $rules = parent::rules();
+//        $rules[] = [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'];
+        $rules[] = [['file'], 'file', 'extensions' => 'pdf'];
+        return $rules;
+    }
 
     public function behaviors() {
         return [
@@ -50,6 +58,8 @@ class AppVehicleTaemin extends VehicleTaemin {
             'reserve' => Yii::t('vehicle_taemin', 'Reserve'),
             'created_at' => Yii::t('vehicle_taemin', 'Created At'),
             'updated_at' => Yii::t('vehicle_taemin', 'Updated At'),
+            'field' => Yii::t('vehicle_taemin', 'Field'),
+            'file' => Yii::t('vehicle_taemin', 'File'),
             'customerName' => Yii::t('vehicle_taemin', 'Customer Name'),
         ];
     }

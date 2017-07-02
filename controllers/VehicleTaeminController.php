@@ -33,8 +33,9 @@ class VehicleTaeminController extends Controller {
         $model->r_customer = $customerId;
         $model->customerName = $customerName;
         $model->taemin_name = $selectedTaeminName;
-
-
+////        $model->r_vehicle = 1;
+//        if ($model->load(Yii::$app->request->post()))
+//            die(\yii\helpers\VarDumper::dump($model->r_vehicle, 4, true));
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

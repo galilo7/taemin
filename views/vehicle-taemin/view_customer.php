@@ -1,10 +1,13 @@
 <?php
 
+use app\models\appmodels\AppVehicleTaemin;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\appmodels\AppVehicleTaemin */
+/* @var $this View */
+/* @var $model AppVehicleTaemin */
 
 $this->title = $model->id;
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('vehicletaemin', 'App Vehicle Taemins'), 'url' => ['index']];
@@ -19,15 +22,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('vehicletaemin', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?=
-        Html::a(Yii::t('vehicletaemin', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('vehicle_taemin', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php
+//        echo Html::a(Yii::t('vehicle_taemin', 'Delete'), ['delete', 'id' => $model->id], [
+//            'class' => 'btn btn-danger',
+//            'data' => [
+//                'confirm' => Yii::t('vehicle_taemin', 'Are you sure you want to delete this item?'),
+//                'method' => 'post',
+//            ],
+//        ]);
+
+        echo Html::a(Yii::t('vehicle_taemin', 'Deactivate'), ['deactivate', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('vehicletaemin', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('vehicle_taemin', 'Are you sure you want to deactivate this item?'),
                 'method' => 'post',
             ],
-        ])
+        ]);
         ?>
     </p>
 
@@ -52,6 +63,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'is_military',
             'r_vehicle',
             'coverage',
+            [
+                'format' => 'raw',
+                'attribute' => 'field',
+                'value' => isset($model->field) ? Html::a(Yii::t('vehicle_taemin', 'Press Here To Get The File'), Url::to('@web/' . $model->field)) : "لا يوجد ملف",
+            ],
             'created_at',
             'updated_at',
         ],

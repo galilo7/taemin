@@ -18,6 +18,7 @@ use yii\helpers\ArrayHelper;
 class AppCfw extends Cfw {
 
     public $customerName;
+    public $file;
 
     public function behaviors() {
         return [
@@ -29,6 +30,24 @@ class AppCfw extends Cfw {
             ],
         ];
     }
+
+    public function rules() {
+        $rules = parent::rules();
+        $rules[] = [['file'], 'file', 'skipOnEmpty' => true];
+//        $rules[] = [['file'], 'safe'];
+//        $rules[] = [['filex'], 'file', 'extensions' => 'pdf'];
+        return $rules;
+    }
+
+//
+//    public function upload() {
+//        if ($this->validate()) {
+//            $this->file->saveAs('uploads/' . time() . '.' . $this->file->extension);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     public function getCustomers() {
         return $this->hasOne(AppCfw::className(), ['r_customer' => 'id']);
@@ -76,11 +95,73 @@ class AppCfw extends Cfw {
             'property_no' => Yii::t('cfw', 'Property No'),
             'number_of_workers' => Yii::t('cfw', 'Number Of Workers'),
             'building' => Yii::t('cfw', 'Building'),
-            'field' => Yii::t('cfw', 'Field'),
             'created_at' => Yii::t('cfw', 'Created At'),
             'updated_at' => Yii::t('cfw', 'Updated At'),
+            'field' => Yii::t('cfw', 'Field'),
+            'file' => Yii::t('cfw', 'File'),
             'customerName' => Yii::t('cfw', 'Customer Name'),
         ];
+    }
+
+//    public function getImageFile() {
+//        return isset($this->field) ? Yii::$app->params['uploadPath'] . $this->avatar : null;
+//    }
+
+    /**
+     * fetch stored image url
+     * @return string
+     */
+    public function getImageUrl() {
+        // return a default image placeholder if your source avatar is not found
+        $avatar = isset($this->avatar) ? $this->avatar : 'default_user.jpg';
+        return Yii::$app->params['uploadUrl'] . $avatar;
+    }
+
+    public function uploadImage() {
+        // get the uploaded file instance. for multiple file uploads
+        // the following data will return an array (you may need to use
+        // getInstances method)
+        $file = UploadedFile::getInstance($this, 'file');
+
+        // if no image was uploaded abort the upload
+        if (empty($file)) {
+            return false;
+        }
+
+        // store the source file name
+        $this->field = 'uploads/' . time() . '.' . $model->file->extension;
+
+        // the uploaded image instance
+        return $file;
+    }
+
+    /**
+     * Process deletion of image
+     *
+     * @return boolean the status of deletion
+     */
+    public function deleteFile() {
+        if (isset($this->field)) {
+            $file = $this->field;
+        } else {
+            $file = null;
+        }
+
+        // check if file exists on server
+        if (empty($file) || !file_exists($file)) {
+            return false;
+        }
+
+        // check if uploaded file can be deleted on server
+        if (!unlink($file)) {
+            return false;
+        }
+
+        // if deletion successful, reset your file attributes
+        $this->field = null;
+//        $this->filename = null;
+
+        return true;
     }
 
 }
